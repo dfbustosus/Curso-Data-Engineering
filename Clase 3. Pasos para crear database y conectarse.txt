@@ -1,0 +1,44 @@
+1. Descargar PostgreSQL
+2. Descargar Dbeaver
+3. Abrir PostgreSQL 
+4. Ingresar contraseñas de logeo
+5. clieck derecho en Databases > Create > Database 
+6. Colorcar un nombre en la Database 
+7. Definir otros patrones de ser necesario y dar click en Save 
+8. Click en la base de datos > Schemas > Tables > Click derecho > Query Tool 
+9. Copiamos los siguientes comandos:
+
+CREATE TABLE customers(
+    customerid INT primary key,
+    name VARCHAR(50),
+    occupation VARCHAR(50),
+    email VARCHAR(50),
+    company VARCHAR(50),
+    phonenumber VARCHAR(20),
+    age INT
+);
+
+CREATE TABLE agents(
+    agentid INT primary key,
+    name VARCHAR(50)
+);
+
+CREATE TABLE calls(
+    callid INT primary key,
+    agentid INT,
+    customerid INT,
+    pickedup SMALLINT,
+    duration INT,
+    productsold SMALLINT
+);
+
+10. Verificamos que las tablas se hayan creado
+11. Ahora procedemos a importar la data en las tablas
+12. clieck derecho en la tabla > Import/Export Data > Definir configuracion e importar para cada uno
+13. Verificar si existe algun problema en caso de tener lios ir a File > Preferences > Paths > Binary Paths > apuntar carpeta bin correctamente
+14. Abrir Dbeaver
+15. Nueva conexion > PostgreSQL> Definir host y parametros de conexion
+16. Si es primera vez descargar el conector de postgresql: https://jdbc.postgresql.org/download/
+17. Driver Settings > Libraries > Añadir Archivo > Buscar archivo descargado > Aceptar 
+18. Probar conexion y ver si todo sale en orden 
+19. Podemos ejecutar consultas ya y ver nuestros esquemas y tablas en la DB. 

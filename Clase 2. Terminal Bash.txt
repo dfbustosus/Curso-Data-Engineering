@@ -1,0 +1,23 @@
+1. pwd
+2. ls 
+ls --help 
+ls -l 
+3. cd
+4. mkdir 
+5. mv
+6. cp 
+7. rm 
+8. touch 
+9. cat 
+10. clear
+11. echo 
+12. whoami 
+13. ps 
+14. alias 
+15. rmdir 
+16 find s*
+17. df
+18. head archivo.txt 
+19. tail -n archivo.txt 
+20. history (ultimos 500 comandos)
+21. exit

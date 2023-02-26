@@ -1,0 +1,73 @@
+1. pwd 
+Ver directorio actual
+2. whoami
+Nombre de computo
+3. help
+brinda la ayuda de distintos comandos
+e.g help pwd
+Observa que -L, -P, -W se le llaman banderas usualmente (pueden ser con minusculas)
+4. clear 
+Borra todo de la terminal
+5. ls
+List the files in the directory
+6. cd 
+cd "Curso Data Engineering"
+cd . se queda en el directorio actual 
+cd .. retroce un nivel en el directorio actual
+cd ../..
+Change directory c
+7. touch (No funciona en windows)
+touch hola.txr
+Para windows: New-Item hola.txt
+8. echo 
+Guardar con contenido
+echo "hola como estas" > hola_david.txt
+9. cat
+Ver contenido
+cat hola_david.txt
+10. mkdir 
+make directory 
+make DavidT
+11. rmdir 
+Solo remueve directorios vacios 
+rmdir DavidT 
+12. Borrar archivos 
+rm hola.txt
+13. Formar de borrar en general carpetas 
+mkdir vacia
+rm -r vacia/ (Borrar directorio)
+rm -rf archivo (Borrar archivos que esten ocupados o en memoria)
+14. mv 
+move files
+mkdir api_data 
+mv hola_david.txt api_data/ 
+ls
+15. renombrar archivos 
+cd api_data 
+mv hola_david.txt script.json
+16. cp 
+copir archivos 
+cp script.json ../
+Si quieres que tenga otro nombre 
+cp script.json ../data.json
+17. Copiar carpetas con otro nombre 
+cd.. 
+cp -r api_data david_O
+18. find (no funciona en powershell)
+buscar archivos pero con nombre completo
+gci script.json
+gci s* 
+Busqueda con patrones de nombre o tamaño
+gci -r | where Name -match '\.json$'
+gci -r | where Length -gt 3
+19. ps 
+Listar procesos activos (como ver admnistrador de tareas)
+20. Mostremos comandos en git Bash (abrir editores)
+nano 
+Ctr +X para salir
+vim 
+:q para salir 
+21. alias 
+Para dedicar comandos tipo (pero solo en git Bash)
+alias david="touch david.json"
+unalias david 
