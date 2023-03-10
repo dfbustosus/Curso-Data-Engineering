@@ -1,0 +1,45 @@
+Fase 1
+1. Que no es una caraacteristica del Big Data
+Vision
+2. El tamaño de los datos en el Big data es de ___ bytes
+Dependiente del problema y de la epoca
+3. Los tipos de data que pertenecen a la denominacion Big Data son:
+Data estructurada, semi-estructurada y no estructurada
+4. Algunas de las ventajas del Big data son:
+Permite soluciones innovadoras
+Ayuda a comprender clientes
+Ayuda a optimizar los procesos de negocio
+5. Algunas de las desventajas del Big data son:
+Muchos datos no estructurados
+Altos costos de procesamiento
+Si no se considera se pueden violar los principios de privacidad
+Fragmento de codigo: 88
+
+Fase
+1. Cuales son las habilidades mas importantes de un DE
+Programacion, Uso de DW y manejo de Big data
+2. Que programas es ideal que sepa un DE
+Python, C, Java,SQL
+3. Cuales son los roles mas importantes de un Data Team
+Data scientist, DE, DA
+4. Cual seria el orden de jerarquia para el manejo de información en una organizacion
+Data Engineer > DA > DS
+5. PostGreSQL, OracleDB, Riak, mongoDB, SAP, Neo4j, Amazon Redshift y redis son herramientas para
+DE
+Fragmento de codigo: 95
+
+Fase 3
+1. Que significa OLTP
+Online Transaction PRocessing
+2. Los datos se almacenan, recuperan y actualizan en un sistema
+OLTP
+3. Que significa OLAP
+Online Analytical Processing
+4. Un sistema __ esta orientado y es usado para el analisis de datos incluidos gerentes, ejecutivos y analistas
+OLAP
+5. Las bases de datos OLAP esta:
+Denormalizadas
+Fragmento de codigo 1575
+
+
+Codigo final: 88951575

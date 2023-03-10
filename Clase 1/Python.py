@@ -13,10 +13,8 @@ while True:
 Ejercicio 2
 Escribir un programa que pida al usuario cuántos números quiere introducir. Luego que lea todos los números y realice una media aritmética.
 """
-cantidad=int(input('Introduce una cantidad de numeros para sacar la media:'))
+cantidad=int(input('Introduce una cantidad de numeros para sacar la media:'));
 lista=[]
-for i in range(cantidad):
-    print(i)
 print('-------------------------------')
 for i in range(cantidad):
     a=float(input('Introduce el numero {}:'.format(i+1)))
@@ -35,7 +33,7 @@ Todos los números múltiples de 5 del 0 al 50 [0, 5, 10, ..., 50]
 print(list(range(0,10+1,1)));
 print([x for x in range(-10, 1)])
 print([x for x in range(0,20+1,1) if x%2==0])
-print([x for x in range(-19, -1+1)])
+print([x for x in range(-19, -1+1,2)])
 print([x for x in range(0,50+1,1) if x%5==0])
 
 """
@@ -46,13 +44,9 @@ Retornar esta nueva lista pero sin elementos duplicados.
 lista_1 = ["h",'o','l','a',' ', 'm','u','n','d','o']
 lista_2 = ["h",'o','l','a',' ', 'l','u','n','a']
 nueva_lista = []
-for element in lista_2:
-    if element in lista_1:
-        nueva_lista.append(element)
-print([*set(nueva_lista)])
-# Otra forma mas sencillo
-lista_1.extend(lista_2) 
-lista_1
+s1=set(lista_1)
+s2=set(lista_2)
+nueva_lista=[*s1.union(s2)]
 
 """
 Ejercicio 5
@@ -73,16 +67,20 @@ print(suma_david)
 Ejercicio 6
 Contar cuantas veces aparece un elemento en una lista
 """
+# 1 forma
+lt = [8, 6, 8, 10, 8, 20, 10, 8, 8]
+lt.count(8)
+# 2 forma
 def conteo(lista, elemento):
     contador = 0
     for elemento in lista:
         if (elemento == x):
-            contador = contador + 1
+            contador += 1
     return contador
 lt = [8, 6, 8, 10, 8, 20, 10, 8, 8]
 x = 8 #elemento
 print('{} aparece {} veces'.format(x, conteo(lt, x)))
-# Otra forma
+# 3 forma
 count = sum([1 for x in lt if x == 8])
 print(count)
 

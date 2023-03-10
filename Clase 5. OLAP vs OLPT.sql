@@ -23,7 +23,7 @@ que se encuentran en la base de datos
 */
 
 /*Imagen 4
-Podrias uar la info de los estudiantes de hace mas de 5 años para propositos como
+Podrias usar la info de los estudiantes de hace mas de 5 años para propositos como
 - Cuantos estudiantes se han graduado?
 - Saber que genero tiene mas graduados?
 - Identificar cuando duran en tu escuela los estudiantes?
