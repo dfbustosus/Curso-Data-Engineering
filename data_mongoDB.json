@@ -1,0 +1,16 @@
+db.product.insertMany([
+    {
+        "name":"mouse",
+        "description":"razer",
+        "tags": ["computers","gaming"],
+        "quantity":14,
+        "created_at": new Date()
+    },
+    {
+        "name":"monitor",
+        "description":"lg",
+        "tags": ["computers","gaming"],
+        "quantity":1,
+        "created_at": new Date()
+    }
+])

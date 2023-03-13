@@ -1,0 +1,45 @@
+# ir a ruta de pysql
+cd "C:\Program Files\PostgreSQL\14\bin"
+
+# Ejecutar psql
+.\psql -U postgres -h localhost
+
+# ver DB
+\list
+
+create database ventas;
+
+\list
+
+\c ventas;
+
+# CREATE
+create table sales (ID int, Description varchar(800), CustomerID int, Price float);
+
+# VER TABLAS
+\dt
+
+# SELECT
+select * from sales;
+
+# ALTER
+alter table sales ADD taxid int NULL;
+
+# DROP
+drop table sales;
+
+# CREATE
+create table sales (ID int, Description varchar(800), CustomerID int, Price float)
+
+# INSERT
+insert into sales (id, description, customerid, price) VALUES (1, 'Hp Product', 3, 1233.44);
+
+# UPDATE
+ update sales SET Description = 'Hp Product v2' WHERE Description ='Hp Product';
+
+# DELETE
+delete from sales where id =1
+
+select * from sales;
+
+

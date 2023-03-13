@@ -1,0 +1,81 @@
+# ir a ruta de pysql
+cd "C:\Program Files\PostgreSQL\14\bin"
+
+# Ejecutar psql
+.\psql -U postgres -h localhost
+
+# ver DB
+\list
+
+create database bde;
+
+\list
+
+# conectarse a la base de datos
+\c bde
+# ver info de conexion actual 
+\conninfo
+
+# Crear tabla 1 
+create table titulos(titulo_id CHAR(6) NOT NULL, titulo varchar(80) NOT NULL, tipo char(20) NOT NULL);
+
+# ver las tablas
+\dt
+
+# Inserts
+
+INSERT INTO titulos (titulo_id, titulo, tipo) VALUES ('3','Grupo recursos Azure','administracion');
+ INSERT INTO titulos (titulo_id, titulo, tipo) VALUES ('3','Grupo recursos Azure','administracion');
+INSERT INTO titulos (titulo_id, titulo,tipo) VALUES ('4', '.NET Framework 4.5','programacion');
+ INSERT INTO titulos (titulo_id, titulo,tipo) VALUES ('5', 'Programacion C#','dev');
+INSERT INTO titulos (titulo_id,titulo,tipo) VALUES ('7', 'Power BI','BI');
+ INSERT INTO titulos (titulo_id,titulo,tipo) VALUES ('8', 'Administracion Sql server','administracion');
+
+select * from titulos
+
+# crear otra tabla
+create table autores (TituloId CHAR(6) NOT NULL, NombreAutor VARCHAR(100) NOT NULL, ApellidosAutor VARCHAR(100) NOT NULL, TelefonoAutor VARCHAR(25));
+
+# Inserts --2 fase
+insert into autores (TituloId, NombreAutor,ApellidosAutor,TelefonoAutor) VALUES ('3','David','Saenz','99897867');
+ insert into autores (TituloId, NombreAutor,ApellidosAutor,TelefonoAutor) VALUES ('8','Ana','Ruiz','99897466');
+ insert into autores (TituloId, NombreAutor,ApellidosAutor,TelefonoAutor) VALUES ('2','Julian','Perez','99897174');
+ insert into autores (TituloId, NombreAutor,ApellidosAutor,TelefonoAutor) VALUES ('1','Andres','Calamaro','99876869');
+ insert into autores (TituloId, NombreAutor,ApellidosAutor,TelefonoAutor) VALUES ('4','Cidys','Castillo','998987453');
+
+# Crear la segunda database
+create database bde_dw;
+
+# conectarase
+\c bde_dw
+
+# Crear tabla alojamiento
+
+create table DimTitulos (TituloId CHAR(6) NOT NULL, TituloNombre VARCHAR(100) NOT NULL, TituloTipo VARCHAR(100) NOT NULL, NombreCompleto VARCHAR(200), Telefon
+oAutor VARCHAR(25));
+
+# Conectarse a donde estan las tablas originales
+\c bde
+
+# Guardar el procedimiento en una ruta dada (carpeta bin, de postgre)
+
+# Verificar que haya quedado guardado 
+\! dir 
+
+# Almacenar el procedimiento
+\i Procedure_postgre.sql
+
+# Verificar el procedimiento
+\df
+
+# Ver nombre de usuario activo
+select current_user;
+
+# Damos permisos al usuario para hacer select,insert.update,delete
+ GRANT ALL PRIVILEGES ON DATABASE bde_dw TO postgres;
+ GRANT ALL PRIVILEGES ON DATABASE bde TO postgres;
+
+# Ejecutamos el procedimiento
+
+
+

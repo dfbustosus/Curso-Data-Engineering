@@ -1,0 +1,86 @@
+Instalacion
+https://www.youtube.com/watch?v=Kp04tWqhSx0&ab_channel=CSCORNERSunitaRai
+
+Tutorial Mongo db
+
+1. Abrir terminal: mongod
+2. Abrir otra terminal: mongosh
+3. show dbs
+4. db
+5. help
+6. db.help()
+7. cls
+8. use webstore
+9. db # no aparece nada porque esta vacia
+10. db.products.insert({"name":"laptop"})
+11. db.products.insertOne({"name":"cd"})
+12. show dbs
+13. show collections
+14. db.dropDatabase()
+15. use webstore
+16. show collections
+17. db.createCollection("users")
+18. db.createCollection("products")
+19. db.createCollection("sellers")
+20. show collections
+21. db.products.insert({
+    "nombre":"laptop",
+    "precio":40.2,
+    "active": false,
+    "created_at": new Date("12/12/1999"),
+    "data": [1,"a",[]],
+    "facturador":{
+        "name":"dell",
+        "version": "xps",
+        "location":{
+            "city":"usa",
+            "direccion":"St 1999"
+        }
+    }
+})
+22. db.products.find()
+23. db.products.find().pretty()
+24. use mystore
+25. db.createCollection("products")
+26. db.products.insertOne({"name":"keyboard"})
+27. db.products.find()
+28. db.products.find().pretty()
+29. db.products.insertOne({"name":"keyboard", "price": 999.99})
+30. db.products.insertOne({"name":"mouse", "price": 240.99})
+31. db.products.insertOne({"name":'xbox'})
+32. db.products.find().pretty()
+33. db.products.insertMany([
+    {
+        "name":"mouse",
+        "description":"razer",
+        "tags": ["computers","gaming"],
+        "quantity":14,
+        "created_at": new Date()
+    },
+    {
+        "name":"monitor",
+        "description":"lg",
+        "tags": ["computers","gaming"],
+        "quantity":1,
+        "created_at": new Date()
+    }
+])
+34. db.products.find().pretty()
+35. db.products.find({name:"mouse"})
+36. db.products.find({price:999.99})
+37. db.products.find({price:999.99}).pretty()
+38. db.products.find({"tags": "computers"})
+39. db.products.find({"tags": "computers","name":"monitor"})
+40. db.products.findOne({"tags":"computers"},{"name":1, "description":1})
+41. db.products.findOne({"tags":"computers"},{"name":1, "description":1, "_id":0})
+42. db.products.find({"tags":"computers"}).sort({name:1})
+43. db.products.find().limit(2)
+44. db.products.count()
+45. db.products.find().forEach(product => print("Product Name:" +product.name))
+46. db.products.find().forEach(product => print("Product Name:" +product.price))
+47. db.products.updateOne({"name": "keyboard"}, {"$set": {"price": 9.99}})
+48.  db.products.updateOne({"name": "keyboard"}, {"$set": {"description":"David"}})
+49.  db.products.update({"name":"keyboard"}, {"$inc": {"price":1}})
+50.  db.products.update({"name":"keyboard"}, {"$rename":{"name":"nombre"}})
+51.  db.products.remove({"name":"keyboard"})
+52. db.products.remove({})
