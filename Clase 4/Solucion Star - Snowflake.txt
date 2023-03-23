@@ -1,0 +1,24 @@
+El snowflake es una variacion del esquema star donde las dimensiones de las tablas estan normalizada 
+en multiples tablas relacionadas, lo que puede mejorar la integridad y reducir la redundancia. 
+
+Una posibilidad puede ser:
+
+Fact table:
+
+- Sales (sales_key, date_key, customer_key, product_key, store_key, quantity_sold, amount_sold)
+
+Dimension tables:
+
+- Date (date_key, date, day_of_week, week, month, quarter, year)
+- Customer (customer_key, name, address, city, state, country, phone)
+- Product (product_key, name, description, category, brand, supplier)
+- Store (store_key, name, address, city, state, country, phone)
+- Category (category_key, category_name, category_description)
+- Brand (brand_key, brand_name, brand_description)
+- Supplier (supplier_key, supplier_name, supplier_address, supplier_city, supplier_state, supplier_country, supplier_phone)
+
+En este nuevo esquema snowflake, las dimensiones Category, Brand y Supplier son normalizadad de la dimension Product .
+La relacion entre Product y Category seria una-a-muchos, y la relacion entre Product y las tablas Brand es tambien una-a-muchos. 
+La relacion entre Product y Supplier es also uno-a-muchos. 
+Esto permite un almacenamiento mas eficinete de la data y mantenimiento mas sencillo de las dimensiones. 
+Sin embargo, requiere de queries mas complejas para acceder a la data entre multiples tablas.

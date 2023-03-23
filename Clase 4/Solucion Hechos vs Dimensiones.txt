@@ -1,0 +1,17 @@
+En el contexto descrito, los hechos serían los valores numéricos que se miden o calculan a través del proceso comercial, 
+mientras que las dimensiones serían los elementos que proporcionan contexto y describen las características de los hechos. P
+or lo tanto, a continuación se presenta una clasificación de cada uno de los elementos mencionados en el enunciado:
+
+- Hechos:
+
+1. Valor de la cantidad: Este es un hecho ya que representa el valor numérico de la cantidad de productos vendidos en una tienda en un día determinado.
+2. Costo total de la orden: Este también es un hecho, ya que representa el valor numérico del costo total de las órdenes vendidas en una tienda en un día determinado.
+3. Taxes en cada orden: Este es un hecho ya que representa el valor numérico de los impuestos aplicados a cada orden de venta en una tienda en un día determinado.
+
+- Dimensiones:
+
+1. Fecha: Esta es una dimensión ya que describe cuándo se realizaron las ventas de cada producto en cada tienda.
+2. Empleado: Esta es una dimensión ya que describe quién realizó la venta de cada producto en cada tienda.
+3. Cliente: Esta es una dimensión ya que describe quién realizó la compra de cada producto en cada tienda.
+4. Tienda: Esta es una dimensión ya que describe dónde se realizaron las ventas de cada producto.
+5. Producto: Esta es una dimensión ya que describe qué tipo de producto se vendió en cada tienda.
