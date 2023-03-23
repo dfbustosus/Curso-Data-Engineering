@@ -1,0 +1,18 @@
+1FN – Primera Forma Normal
+Una tabla está en Primera Forma Normal si:
+
+- Todos los atributos son «atómicos». Por ejemplo, en el campo teléfono no tenemos varios teléfonos.
+- La tabla contiene una clave primaria única. Por ejemplo el NIF para personas, la matrícula para vehículos o un simple id 
+autoincremental. Si no tiene clave, no es 1FN.
+- La clave primaria no contiene atributos nulos. No podemos tener filas para las que no haya clave (por ejemplo, personas sin NIF o vehículos sin matrícula).
+- No debe existir variación en el número de columnas. Si algunas filas tienen 8 columnas y otras 3, pues no estamos en 1FN.
+- Los campos no clave deben identificarse por la clave. Es decir, que los campos no clave dependen funcionalmente de la clave.
+ Esto es prácticamente lo mismo que decir que existe clave primaria.
+- Debe Existir una independencia del orden tanto de las filas como de las columnas, es decir, si los datos cambian de orden 
+no deben cambiar sus significados. 
+
+2FN – Segunda Forma Normal
+Una tabla está en 2FN si además de estar en 1FN cumple que los atributos no clave depende de TODA la clave principal.
+
+3FN – Tercera Forma Normal
+Una tabla está en 3FN si además de estar en 2FN no existe ninguna dependencia transitiva entre los atributos que no son clave.
