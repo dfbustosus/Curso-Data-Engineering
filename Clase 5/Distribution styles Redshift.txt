@@ -1,0 +1,16 @@
+En Redshift, hay tres opciones diferentes de DISTSTYLE que puede usar para controlar cómo se distribuyen los datos entre los nodos de computación en un clúster:
+
+1. DISTSTYLE EVEN: con esta opción, los datos se distribuyen uniformemente en todos los nodos de cómputo del clúster. Esta puede ser una buena opción para tablas con una gran cantidad de filas o tablas donde no hay una clave de distribución obvia.
+
+2. DISTSTYLE KEY: con esta opción, los datos se distribuyen en función de los valores de una columna específica (la distkey). Cada valor único en la distkey se asigna a un nodo de cálculo específico, por lo que las filas con el mismo valor de clave de distribución siempre se almacenarán en el mismo nodo. Esta puede ser una buena opción para las tablas en las que se une con frecuencia en la columna distkey
+
+3. DISTSTYLE ALL: con esta opción, se almacena una copia completa de la tabla en cada nodo de cómputo del clúster. Esta puede ser una buena opción para tablas de referencia pequeñas o para tablas que consulta con frecuencia con una cláusula WHERE que hace referencia a varias columnas.
+
+----------------------------------------------
+Además de la opción DISTSTYLE, también puede especificar una DISTKEY y una SORTKEY para cada tabla en Redshift:
+
+1. DISTKEY: Esto especifica la columna a usar para la distribución de datos cuando se usa DISTSTYLE KEY. Cuando especifica una clave de distribución, Redshift genera un hash de los valores en esa columna y asigna filas con el mismo valor hash al mismo nodo de cálculo.
+
+2. SORTKEY: Esto especifica la columna o columnas que se usarán para ordenar los datos de la tabla en el disco. Ordenar los datos puede mejorar el rendimiento de las consultas, especialmente cuando realiza consultas frecuentes en columnas específicas.
+
+https://civis.zendesk.com/hc/en-us/articles/115000711243-Distkeys-and-Sortkeys

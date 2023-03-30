@@ -1,0 +1,357 @@
+create database adventure;
+
+use adventure;
+
+-- Crear table sales
+CREATE TABLE departments (
+  dept_id INT NOT NULL AUTO_INCREMENT,
+  dept_name VARCHAR(50) NOT NULL,
+  PRIMARY KEY (dept_id)
+);
+
+-- Inserts
+INSERT INTO departments (dept_name) VALUES
+('Accounting'),
+('Human Resources'),
+('Sales'),
+('Marketing'),
+('Operations'),
+('Customer Service'),
+('Information Technology'),
+('Research and Development'),
+('Legal'),
+('Public Relations'),
+('Supply Chain Management'),
+('Quality Assurance'),
+('Facilities Management'),
+('Training and Development'),
+('Product Management'),
+('Design and Creative Services'),
+('Finance'),
+('Purchasing'),
+('Business Development'),
+('Administration'),
+('Health and Safety'),
+('Event Planning'),
+('Charitable Giving'),
+('Internal Audit'),
+('Real Estate'),
+('Engineering'),
+('Customer Success'),
+('Product Marketing'),
+('Corporate Communications'),
+('Investor Relations'),
+('Business Intelligence'),
+('Data Science'),
+('Content Strategy'),
+('Social Media'),
+('Information Security'),
+('Network Operations'),
+('System Administration'),
+('Database Administration'),
+('Web Development'),
+('Mobile Development'),
+('Cloud Operations'),
+('DevOps'),
+('Quality Engineering'),
+('Release Management'),
+('Technical Writing');
+
+
+-- Crear tabla employees
+CREATE TABLE employees (
+  emp_id INT NOT NULL AUTO_INCREMENT,
+  emp_name VARCHAR(50) NOT NULL,
+  dept_id INT NOT NULL,
+  hire_date DATE NOT NULL,
+  PRIMARY KEY (emp_id),
+  FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+);
+
+-- Inserts
+INSERT INTO employees (emp_name, dept_id, hire_date) VALUES
+('John Doe', 1, '2021-01-01'),
+('Jane Smith', 2, '2020-05-01'),
+('Bob Johnson', 3, '2019-02-01'),
+('Alice Brown', 2, '2022-03-01'),
+('Tom Wilson', 4, '2018-06-01'),
+('Mark Johnson', 1, '2021-03-10'),
+('Jennifer Kim', 2, '2020-06-20'),
+('Robert Lee', 3, '2019-09-30'),
+('Samantha Chen', 4, '2022-01-15'),
+('Steven Park', 5, '2018-04-25'),
+('Laura Kim', 6, '2021-08-01'),
+('Daniel Lee', 7, '2020-11-05'),
+('Emily Park', 8, '2019-02-15'),
+('Chris Lee', 9, '2022-05-20'),
+('Linda Chen', 10, '2018-08-30'),
+('Michael Kim', 11, '2021-12-10'),
+('Amanda Lee', 12, '2020-02-01'),
+('Eric Park', 13, '2019-04-20'),
+('Rachel Kim', 14, '2022-06-15'),
+('Kevin Lee', 15, '2018-09-25'),
+('Michelle Chen', 16, '2021-01-01'),
+('Joshua Kim', 17, '2020-03-10'),
+('Amy Lee', 18, '2019-06-20'),
+('William Park', 19, '2022-09-30'),
+('Sophia Kim', 20, '2018-12-15'),
+('Andrew Lee', 21, '2021-02-05'),
+('Grace Chen', 22, '2020-05-15'),
+('Scott Kim', 23, '2019-08-25'),
+('Stephanie Lee', 24, '2022-11-05'),
+('Thomas Park', 25, '2018-02-15'),
+('Julia Kim', 26, '2021-04-20'),
+('Jason Lee', 27, '2020-06-30'),
+('Karen Chen', 28, '2019-10-10'),
+('Samuel Kim', 29, '2022-01-15'),
+('Christine Lee', 30, '2018-03-25'),
+('Edward Park', 31, '2021-06-01'),
+('Olivia Kim', 32, '2020-08-15'),
+('Matthew Lee', 33, '2019-11-20'),
+('Katherine Chen', 34, '2022-02-25'),
+('Brian Kim', 35, '2018-05-10'),
+('Vanessa Lee', 36, '2021-07-20'),
+('Nathan Park', 37, '2020-09-30'),
+('Isabella Kim', 38, '2019-12-10'),
+('Christopher Lee', 39, '2022-03-10'),
+('Ashley Chen', 40, '2018-06-20'),
+('Jacob Kim', 41, '2021-09-30'),
+('Madison Lee', 42, '2020-01-15'),
+('Nicholas Park', 43, '2019-04-01'),
+('Emma Kim', 44, '2022-07-05'),
+('Joshua Lee', 45, '2018-10-15');
+
+
+-- Crear tabla projects 
+CREATE TABLE projects (
+  proj_id INT NOT NULL AUTO_INCREMENT,
+  proj_name VARCHAR(50) NOT NULL,
+  PRIMARY KEY (proj_id)
+);
+
+-- Inserts
+INSERT INTO projects (proj_name) VALUES
+('Project A'),
+('Project B'),
+('Project C'),
+('Project D'),
+('Project E');
+
+-- Crear tabla employee_projects 
+CREATE TABLE employee_projects (
+  emp_id INT NOT NULL,
+  proj_id INT NOT NULL,
+  PRIMARY KEY (emp_id, proj_id),
+  FOREIGN KEY (emp_id) REFERENCES employees(emp_id),
+  FOREIGN KEY (proj_id) REFERENCES projects(proj_id)
+);
+
+-- Inserts
+INSERT INTO employee_projects (emp_id, proj_id) VALUES
+(1, 1),
+(1, 2),
+(2, 2),
+(2, 3),
+(3, 1),
+(4, 4),
+(5, 3),
+(6, 1),
+(6, 4),
+(7, 2),
+(7, 4),
+(8, 1),
+(8, 3),
+(9, 2),
+(9, 4),
+(10, 1),
+(10, 3),
+(11, 1),
+(11, 4),
+(12, 2),
+(12, 3),
+(13, 1),
+(13, 2),
+(14, 3),
+(14, 4),
+(15, 2),
+(15, 3),
+(16, 1),
+(16, 4),
+(17, 1),
+(17, 3),
+(18, 2),
+(18, 4),
+(19, 1),
+(19, 3),
+(20, 2),
+(20, 4),
+(21, 1),
+(21, 2),
+(22, 3),
+(22, 4),
+(23, 2),
+(23, 3),
+(24, 1),
+(24, 4),
+(25, 1),
+(25, 3),
+(26, 2),
+(26, 4),
+(27, 1),
+(27, 3),
+(28, 2),
+(28, 4),
+(29, 1),
+(29, 2),
+(30, 3),
+(30, 4),
+(31, 2),
+(31, 3),
+(32, 1),
+(32, 4),
+(33, 1),
+(33, 3),
+(34, 2),
+(34, 4),
+(35, 1),
+(35, 3),
+(36, 2),
+(36, 4),
+(37, 1),
+(37, 2),
+(38, 3),
+(38, 4),
+(39, 2),
+(39, 3),
+(40, 1),
+(40, 4),
+(41, 1),
+(41, 3),
+(42, 2),
+(42, 4),
+(43, 1),
+(43, 3),
+(44, 2),
+(44, 4),
+(45, 1),
+(45, 2),
+(45, 3),
+(45, 4);
+
+query ineficiente:
+
+SELECT emp_name, proj_name, dept_name
+FROM employees
+INNER JOIN employee_projects ON employees.emp_id = employee_projects.emp_id
+INNER JOIN projects ON employee_projects.proj_id = projects.proj_id
+INNER JOIN departments ON employees.dept_id = departments.dept_id;
+
+
+una mas eficiente
+
+SELECT emp_name, proj_name, dept_name
+FROM employee_projects
+INNER JOIN employees ON employee_projects.emp_id = employees.emp_id
+INNER JOIN projects ON employee_projects.proj_id = projects.proj_id
+INNER JOIN departments ON employees.dept_id = departments.dept_id;
+
+
+En la consulta eficiente, la tabla employee_projects se utiliza como tabla principal y todas las demás tablas se unen
+a ella en función de las claves externas. Esto reduce la cantidad de filas que deben unirse y da como resultado una 
+consulta más eficiente.
+
+
+
+La razón por la que la segunda consulta con múltiples uniones es más eficiente es porque usa la tabla employee_projects
+como la tabla principal y une las otras tablas en función de las claves foráneas. Este enfoque reduce la cantidad de filas
+que deben unirse y da como resultado un conjunto de resultados intermedios más pequeño.
+
+Por el contrario, la primera consulta con múltiples uniones utiliza la tabla de empleados como tabla principal y une las
+otras tablas a ella. Este enfoque da como resultado un conjunto de resultados intermedios más grande y más filas que deben
+unirse, lo que puede ralentizar el rendimiento de la consulta.
+
+En general, al unir varias tablas, es importante tener en cuenta el orden en que se unen las tablas y qué tabla debe 
+usarse como tabla principal. Al seleccionar la tabla principal adecuada y el orden de las uniones, puede optimizar su
+consulta y mejorar su rendimiento.
+
+
+-- Ejemplo 2
+-- Original
+
+SELECT TOP 25
+	Product.ProductID,
+	Product.Name AS ProductName,
+	Product.ProductNumber,
+	CostMeasure.UnitMeasureCode,
+	CostMeasure.Name AS CostMeasureName,
+	ProductVendor.AverageLeadTime,
+	ProductVendor.StandardPrice,
+	ProductReview.ReviewerName,
+	ProductReview.Rating,
+	ProductCategory.Name AS CategoryName,
+	ProductSubCategory.Name AS SubCategoryName
+FROM Production.Product
+INNER JOIN Production.ProductSubCategory
+ON ProductSubCategory.ProductSubcategoryID = Product.ProductSubcategoryID
+INNER JOIN Production.ProductCategory
+ON ProductCategory.ProductCategoryID = ProductSubCategory.ProductCategoryID
+INNER JOIN Production.UnitMeasure SizeUnitMeasureCode
+ON Product.SizeUnitMeasureCode = SizeUnitMeasureCode.UnitMeasureCode
+INNER JOIN Production.UnitMeasure WeightUnitMeasureCode
+ON Product.WeightUnitMeasureCode = WeightUnitMeasureCode.UnitMeasureCode
+INNER JOIN Production.ProductModel
+ON ProductModel.ProductModelID = Product.ProductModelID
+LEFT JOIN Production.ProductModelIllustration
+ON ProductModel.ProductModelID = ProductModelIllustration.ProductModelID
+LEFT JOIN Production.ProductModelProductDescriptionCulture
+ON ProductModelProductDescriptionCulture.ProductModelID = ProductModel.ProductModelID
+LEFT JOIN Production.ProductDescription
+ON ProductDescription.ProductDescriptionID = ProductModelProductDescriptionCulture.ProductDescriptionID
+LEFT JOIN Production.ProductReview
+ON ProductReview.ProductID = Product.ProductID
+LEFT JOIN Purchasing.ProductVendor
+ON ProductVendor.ProductID = Product.ProductID
+LEFT JOIN Production.UnitMeasure CostMeasure
+ON ProductVendor.UnitMeasureCode = CostMeasure.UnitMeasureCode
+ORDER BY Product.ProductID DESC;
+
+-- optimizar
+
+SELECT TOP 25
+	Product.ProductID,
+	Product.Name AS ProductName,
+	Product.ProductNumber,
+	ProductCategory.Name AS ProductCategory,
+	ProductSubCategory.Name AS ProductSubCategory,
+	Product.ProductModelID
+INTO #Product
+FROM Production.Product
+INNER JOIN Production.ProductSubCategory
+ON ProductSubCategory.ProductSubcategoryID = Product.ProductSubcategoryID
+INNER JOIN Production.ProductCategory
+ON ProductCategory.ProductCategoryID = ProductSubCategory.ProductCategoryID
+ORDER BY Product.ModifiedDate DESC;
+ 
+SELECT
+	Product.ProductID,
+	Product.ProductName,
+	Product.ProductNumber,
+	CostMeasure.UnitMeasureCode,
+	CostMeasure.Name AS CostMeasureName,
+	ProductVendor.AverageLeadTime,
+	ProductVendor.StandardPrice,
+	ProductReview.ReviewerName,
+	ProductReview.Rating,
+	Product.ProductCategory,
+	Product.ProductSubCategory
+FROM #Product Product
+INNER JOIN Production.ProductModel
+ON ProductModel.ProductModelID = Product.ProductModelID
+LEFT JOIN Production.ProductReview
+ON ProductReview.ProductID = Product.ProductID
+LEFT JOIN Purchasing.ProductVendor
+ON ProductVendor.ProductID = Product.ProductID
+LEFT JOIN Production.UnitMeasure CostMeasure
+ON ProductVendor.UnitMeasureCode = CostMeasure.UnitMeasureCode;
+ 
+DROP TABLE #Product;
