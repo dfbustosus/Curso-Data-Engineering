@@ -4,5 +4,6 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/JJTorresDS/stocks-ds-edu/main/stocks.csv'
 # Lectura de archivo
 df = pd.read_csv(url, index_col=0)
+print(df.columns)
 # Subset de columnas de interés
 print(df[['AMZN','MCD','SBUX','GOOG','MSFT']].head(5).round(1))
