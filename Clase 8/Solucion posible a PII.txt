@@ -1,0 +1,20 @@
+
+PII (Información de Identificación Personal) son datos que pueden identificar directa o indirectamente a una persona. Por lo tanto, en general, se deben proteger los siguientes tipos de datos en una tabla:
+
+- Nombres completos
+- Direcciones de correo electrónico
+- Direcciones postales
+- Números de teléfono
+- Números de identificación (como números de seguridad social o números de pasaporte)
+- Fechas de nacimiento
+- Datos bancarios (como números de cuenta y de tarjeta de crédito)
+- Contraseñas y otros datos de autenticación
+
+Por motivos de privacidad, las siguientes columnas deberían llevar PII:
+
+- name: Este campo puede contener información personal si el nombre se refiere al nombre completo del huésped o del anfitrión.
+- host_id: Este campo contiene información personal identificable del anfitrión.
+- street: Este campo puede contener información personal si incluye la dirección completa del alojamiento.
+- latitude y longitude: Estos campos pueden usarse para ubicar la propiedad en un mapa y, por lo tanto, pueden revelar información personal.
+- price: Este campo puede contener información personal si el precio es muy alto o muy bajo, lo que puede indicar el nivel de ingresos del anfitrión o del huésped.
+

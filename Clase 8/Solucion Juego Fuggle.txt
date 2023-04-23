@@ -1,0 +1,27 @@
+Solucion Juego Fuggle
+1. Contratar a un tercero para que nos ayude a identificar los problemas de seguridad 
+Proveemos seguridad a cualquier chance y de damos al manager la chance de investigar mas a detalles en casos problema
+
+2. ITFr33X, un grupo de trabajadores independientes, quienes lo haran rapido y a un precio razonable
+Evitamos los equipos con poca experiencia en este ambito 
+Tambien dejamos detras los de alta experiencia con altos costos porque sino nos quedamos sin dinero para el futuro
+
+3. Usar el directorio activo interno para aplicar politicas de acceso mas estrictas
+Todavia tenemos mucho por mejorar decidimos generar cambios en la seguridad 
+
+4. Encriptar toda la propiedad intelectual
+Es importante esto con el fin de evitar cualquier tipo de hackeo asi el sistema no queda comprometido y protegemos data critica y sensible dandole datos inservibles a los atacantes
+
+5. Inversion en tecnologia de Deteccion de Brechas
+Mejoramos la capacidad de detectar y mitigar amenzasas selecionando esta opcion , de nuevo ningun sistema es perfecto entonces esta bien mejorar nuesstras capacidades 
+
+6. Invitarlos a probar la aplicacion en un entorno controlado
+De esta forma le damos lo que quiere pero bajo nuestra supervision con limitaciones de accesso y de riesgos 
+
+7. Lo sentimos mucho pero es un proyecto de alta seguridad y no puede salir de la compañia
+Esto es lo mejor para evitar cualquier ingreso de puntos externos al sistema 
+
+8. Pedir al equipo de Seguridad que revise los registros del distema de Deteccion de Brechas
+Como tenemos buen respaldo de decisiones anteriores podemos rastear facilmente lo que ha ocurrido y darnos cuenta de posibles fallos
+
+FIN!!!!!!!!!!!

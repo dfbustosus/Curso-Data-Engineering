@@ -1,9 +1,3 @@
-id_teacher;name;surname;complaints
-1;David;BU;15
-2;Juan;TU;23
-3;Pedro;IU;24
-4;Andres;BB;30
-5;Sofia;NM;25
-6;Carolina;MJ;52
-7;Andrea;IO;53
-8;Carla;PI;54
+version https://git-lfs.github.com/spec/v1
+oid sha256:81e306928c56ffca52c68344ecb193e3664caf535d3b83af1130a16bd26d7e04
+size 160
