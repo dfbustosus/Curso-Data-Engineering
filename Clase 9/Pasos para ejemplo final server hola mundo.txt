@@ -1,0 +1,41 @@
+0. Descomprimir la carpeta EJEMPLO1_DOCKER
+1. Ir a la ruta:
+cd "C:/Users/Windows/Desktop/Curso Data Engineering David BU/Clase 9/EJEMPLO1_DOCKER/EJEMPLO1_DOCKER/"
+ls
+2. Ver contenido de Dockerfile:
+cat Dockerfile
+
+## EXPLICACION
+####################################3
+FROM python:3
+RUN  mkdir WORK_REPO
+RUN  cd  WORK_REPO
+WORKDIR  /WORK_REPO
+ADD hola-mundo.py .
+CMD ["python", "-u", "hola-mundo.py"]
+################################
+3. Ver contenido del hola-mundo.py
+cat hola-mundo.py
+print("Hola mundo soy yo")
+
+4. Construir la imagen con :
+docker build -t hola-mundo-web .
+
+5. Ejecutar el contenedor con las opciones deseadas
+docker run -p 3000:3000 hola-mundo-web
+
+6. ver contenedores:
+docker ps -a
+
+7. borrar contenedores no utiles
+docker container prune
+
+8. verificar imagenes
+docker images
+
+9. borrar imagen no util
+docker rmi 2161e1b37c07
+
+
+LISTO!!!!!!!!!!!
+

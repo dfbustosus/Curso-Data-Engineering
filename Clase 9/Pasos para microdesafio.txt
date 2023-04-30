@@ -1,0 +1,56 @@
+0. docker --version
+1.Descomprimir la carpeta en Desktop
+2.Abrir la terminal 
+3.Ir a la carpeta raiz: 
+cd Desktop 
+cd "Curso Data Engineering David BU/Clase 9/web-page/web-page/"
+ls
+4. Verificar el contenido de la carpeta con: ls
+5.Creamos la imagen con:
+“””
+docker build -t img-web-estatica .
+“””
+Explicacion:>>>>>>>>>
+Este código es un comando para crear una imagen de Docker con el nombre de etiqueta img-web-estatica.
+
+Esto es lo que significa cada parte del código:
+
+docker build es el comando para construir una imagen de Docker.
+-t es una opción para especificar un nombre (etiqueta) para la imagen que se está construyendo.
+img-web-estatica es el nombre (etiqueta) que se le da a la imagen que se está construyendo.
+. especifica el directorio actual como contexto de compilación. El proceso de compilación de Docker usa el contexto de compilación para ubicar los archivos necesarios para compilar la imagen.
+
+6.Verifica las imagenes disponibles con: docker ps -a
+docker ps muestra solo los contenedores en ejecución, mientras que el comando docker ps -a muestra todos los contenedores, incluidos los detenidos y cerrados.
+
+7.Analiza las imagenes: docker images
+8.Ejecuta tu imagen con:
+“””
+9.docker run -it -d -p 80:80 img-web-estatica
+“””
+Explicacion: >>>>>>>>>>>
+docker run es el comando para ejecutar un contenedor Docker.
+- it son opciones para ejecutar el contenedor en modo interactivo con una terminal.
+-d es una opción para ejecutar el contenedor en modo separado, lo que significa que el contenedor se ejecutará en segundo plano y no mantendrá la terminal abierta.
+-p 80:80 es una opción para asignar el puerto 80 de la máquina host al puerto 80 del contenedor. Esto permite que el contenedor sirva contenido web al que se puede acceder a través de un navegador web en la máquina host
+img-web-estatica es el nonbre de la imagen de Docker usada para crear el container 
+
+10.Lanza tu servicio en una página web con localhost
+http://localhost/80
+
+Deberás visualizar tu página web
+
+11. verifica tus imagenes con:
+docker images
+12. detener el contenedor
+docker ps -a
+docker stop e0cf5cb50791
+13. borrar el container
+docker rm e0cf5cb50791
+14. borrar la imagen
+docker images
+docker rmi d5d00e40615a
+
+LISTO!!!!
+
+

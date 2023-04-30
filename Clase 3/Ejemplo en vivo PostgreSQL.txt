@@ -29,7 +29,7 @@ alter table sales ADD taxid int NULL;
 drop table sales;
 
 # CREATE
-create table sales (ID int, Description varchar(800), CustomerID int, Price float)
+create table sales (ID int, Description varchar(800), CustomerID int, Price float);
 
 # INSERT
 insert into sales (id, description, customerid, price) VALUES (1, 'Hp Product', 3, 1233.44);

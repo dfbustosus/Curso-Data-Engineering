@@ -1,0 +1,33 @@
+docker --version
+docker run hello-world
+docker pull busybox
+
+########################
+- docker run se usa para iniciar un nuevo contenedor a partir de una imagen de Docker existente.
+- docker pull se utiliza para descargar una imagen de Docker desde un registro de Docker sin crear un contenedor
+########################
+docker run busybox echo "Hola!"
+docker images
+docker ps
+
+docker run -it busybox sh
+#########################
+# Explicacion: >>>>>>>>>>
+docker run es el comando para ejecutar un nuevo contenedor Docker.
+-it son opciones para ejecutar el contenedor en modo interactivo con una terminal adjunta.
+busybox es el nombre de la imagen de Docker que se usará para crear el contenedor.
+sh es el comando a ejecutar dentro del contenedor. En este caso, lanza el comando de shell "sh", que es el comando predeterminado para la imagen de busybox.
+#################################
+ls 
+cd usr 
+ls
+exit
+
+docker ps -a
+
+docker rm b93e8304f5d3
+docker container prune
+
+docker images
+docker rmi 7cfbbec8963d
+

@@ -1,0 +1,67 @@
+1. Ir a carpeta raiz
+cd "C:/Users/Windows/Desktop/Curso Data Engineering David BU/Clase 9/EJEMPLO2_DOCKER/EJEMPLO2_DOCKER/"
+ls
+2. Ver el dockerfile
+cat Dockerfile
+
+## Explicacion
+################################################3
+FROM node:12.22.1-alpine3.11: Especifica la imagen base, la cual es Node.js 12.22.1 con la distribucion Alpine 3.11 Linux. Esta es una imagen liviana para correr aplicaciones Node.js
+
+RUN apk add --no-cache python2 build-base: Instalar los paquetes necesarios y las dependencias requeridad para poder usar Node.js en el container. Instala python2 usando el Alpine package manager apk.
+
+WORKDIR /app: setea el directorio de trabajo en /app, donde los archivos de la aplicacion de Node.js seran copiados y donde el comando yarn se ejecutara. Yarn es un manager de librerias para JavaScript usado comunmente en NodeJs
+
+COPY . .: Aqui copiamos todos los archivos y directorios de nuestra maquina local en el directorio /app del contenedor.
+
+RUN yarn install --production: corre el comando  yarn install command para instalar las dependencias de Node.js para la aplicacion en el container. El flag --production le dice a yarn que solo instale las dependencias requeridas para correr la app y no las dependencias de desarrollo innecesarias
+
+CMD ["node", "/app/src/index.js"]: especifica el comando por defecto para correr cuando el container inicie. Corre los comandos para iniciar la aplicacion Node.js y el archivo index.js, que esta ubicado en /app/src
+#####################################################3
+
+3. Construir la imagen con:
+
+docker build -t lanzando-aplicacion .
+
+# Explicacion: >>>>>>>>>>><
+##################################################3
+docker build: este comando crea una imagen de Docker a partir de un Dockerfile.
+
+-t lanzando-aplicacion: Esta opción etiqueta la imagen resultante con el nombre lanzando-aplicacion. La opción -t significa "etiqueta".
+
+.: Esto especifica el contexto de compilación, que es la ubicación del Dockerfile y cualquier otro archivo que se necesite durante el proceso de compilación. En este caso, . se refiere al directorio actual.
+###############################################3
+
+4. Ejecutar la imagen con:
+docker run -p 3000:3000 lanzando-aplicacion
+
+# Explicacion : >>>>>>>>>>>>>>>>><
+################################################
+docker run: este comando crea y ejecuta un nuevo contenedor Docker.
+
+-p 3000:3000: esta opción asigna el puerto 3000 en el contenedor Docker al puerto 3000 en la máquina host. La sintaxis de esta opción es -p host_port:container_port.
+
+lanzando-aplicacion: Este es el nombre de la imagen de Docker en la que se debe basar el contenedor.
+################################################
+
+# Fijate que ahora como no colocamos la opcion -d es distinto al caso anterior
+
+5. Verificar que quede alojado la webpage :
+http://localhost:3000/
+
+6. CTRL +C para cancelar el run
+7. en otro terminal 
+docker ps -a
+8. parar el container
+docker stop 2577bb0ed811
+9. borrar el container con:
+docker rm 2577bb0ed811
+10. Verificar imagenes
+docker images
+11. borrar imagen de interes
+docker rmi fd50a59afbc3
+12. verificar que todo este en orden
+docker images
+docker ps -a
+
+LISTO!!!!!!!!!!!!!!!1
