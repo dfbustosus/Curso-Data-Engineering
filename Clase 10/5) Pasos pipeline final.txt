@@ -1,0 +1,25 @@
+1. Crear un nuevo folder que se llame pipeline
+2. Crear un nuevo archivo docker-compose con el siguiente archivo 
+https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/Data_pipeline_sencillo/docker-compose.yaml
+3. Crear una subcarpeta de trabajo llamada raw_data donde alojes los datos de las tablas  
+booking: https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/Data_pipeline_sencillo/booking.csv
+clientes: https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/Data_pipeline_sencillo/client.csv 
+hoteles: https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/Data_pipeline_sencillo/hotel.csv
+4. Ir al folder:
+cd Pipeline 
+ls 
+5. Crear un folder dags dentro y pegar el archivo del siguiente DAG: 
+https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/dag_pipeline_sencillo.py
+6. Inicializar airflow con el comando: 
+docker-compose up
+7. Loguearse a airflow con contraseña y password: airflow
+8. Buscar el dag llamado ingestion_data y ejecutarlo
+9. Analizar la pestaña Graphs de airflow 
+10. Dar click en la tarea transformar_data  >Logs y verificar que salga este mensaje
+11. Dar click en la tarea load_data  >Logs y verificar que salga este mensaje 
+12. Finalmente verificar que se hayan creado dos subcarpetas una llamada processed_data y otra db
+13. Verificar el archivo resultante dentro de processed_data
+14. Verificar el archivo en formato sql dentro de la carpeta db
+15. Abrir la base de datos en DB Browser y verificar que funcione 
+
+Salir del terminar y listo 

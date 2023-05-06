@@ -1,0 +1,8 @@
+1. Dentro de la carpeta de dags de Mmicrodesafio poner el siguiente archivo con nombre mi_primer_dag.py: 
+https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/primer_dag_v4.py
+##############OJO CON LA FECHA: start_date=datetime(2023,5,6) ################################3
+2. Ir a airflow
+3. Seleccionar los dags 
+4. Trigger el dag 
+5. Verificar que todo se ejecute
+6. Mirar los logs y verificar que se ejecute 

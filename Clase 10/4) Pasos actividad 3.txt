@@ -1,0 +1,37 @@
+CatchUp y backfilling
+
+En esta oportunidad revisaremos cómo poder correr dags en fechas del pasado para esto tendremos dos formas de hacerlo 
+
+--------------------- Uso de catchup --------------------- 
+Para este caso podrás dirigirte al siguiente enlace y verificar cómo puedes ejecutar tareas en el pasado solo activando el comando catchup en tu dag
+
+1. Ir al siguiente enlace: https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/dag_con_catchup.py
+2. Copiar el archivo con el nombre dag_con_catchup.py dentro del folder dags en python
+############ Ojo con la fecha cambiar a un dia antes: start_date=datetime(2023,5,5) ############
+3. Ir a ver los dags de airflow y seleccionar el que creamos 
+4. Si no sale CTRL+C en el terminal 
+5. docker-compose up y volver a logearte 
+6. Seleccionar el dag 
+7. Trigger el dag_con_backfilling
+8. Ver que se mande el mensaje en los logs 
+
+
+---------------------  Uso de backfilling --------------------- 
+En este caso podrás dirigirte al siguiente enlace para poder ejecutar el DAG, notaras que como se desactivo el parámetro 
+catchup no se correrán tareas en el pasado pero podemos modificar esto con los siguientes pasos
+
+1. Abrir terminal en la ruta donde tienes los dags
+2. Ir a la siguiente url: https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/dag_con_backfilling.py
+3. Copiar el archivo con el nombre dag_con_backfilling.py dentro de Microdesafio/dags/
+############# OJO CON LA FECHA --- start_date=datetime(2023,5,5) ##################
+4. Escribir el terminal : docker ps
+5. Buscar el container id que diga: microdesafio_airflow-scheduler_1 y sacar el container ID
+6. Conectarse al contenedor con: docker exec -it <id_contenedor> bash
+7. ls 
+8. cd dags 
+9. Escribir el siguiente comando: airflow dags backfill -s 2023-05-05 -e 2023-05-06 dag_con_backfilling
+10. Luego de esto deberas observar un proceso que termina con el siguiente mensaje: INFO - Backfill done. Exiting.
+11. exit 
+12. exit 
+Al abrir airflow en la web podrás observar como la tarea se ha ejecutado en repetidas ocasiones en el pasado
+Genial con esto ya sabes como correr DAGs en el pasado usando Catchup o Backfil

@@ -1,0 +1,27 @@
+*** Reading local file: /opt/airflow/logs/dag_id=ingestion_data/run_id=scheduled__2022-09-05T18:50:11.403809+00:00/task_id=transformar_data/attempt=1.log
+[2022-09-05, 19:50:21 UTC] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: ingestion_data.transformar_data scheduled__2022-09-05T18:50:11.403809+00:00 [queued]>
+[2022-09-05, 19:50:21 UTC] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: ingestion_data.transformar_data scheduled__2022-09-05T18:50:11.403809+00:00 [queued]>
+[2022-09-05, 19:50:21 UTC] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2022-09-05, 19:50:21 UTC] {taskinstance.py:1377} INFO - Starting attempt 1 of 1
+[2022-09-05, 19:50:21 UTC] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2022-09-05, 19:50:21 UTC] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): transformar_data> on 2022-09-05 18:50:11.403809+00:00
+[2022-09-05, 19:50:21 UTC] {standard_task_runner.py:52} INFO - Started process 11018 to run task
+[2022-09-05, 19:50:21 UTC] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'ingestion_data', 'transformar_data', 'scheduled__2022-09-05T18:50:11.403809+00:00', '--job-id', '74', '--raw', '--subdir', 'DAGS_FOLDER/dag_pipeline_sencillo.py', '--cfg-path', '/tmp/tmpzpd86657', '--error-file', '/tmp/tmpuudd19nk']
+[2022-09-05, 19:50:21 UTC] {standard_task_runner.py:80} INFO - Job 74: Subtask transformar_data
+[2022-09-05, 19:50:21 UTC] {task_command.py:371} INFO - Running <TaskInstance: ingestion_data.transformar_data scheduled__2022-09-05T18:50:11.403809+00:00 [running]> on host 7122e948edb0
+[2022-09-05, 19:50:22 UTC] {logging_mixin.py:115} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:202 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2022-09-05, 19:50:22 UTC] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=ingestion_data
+AIRFLOW_CTX_TASK_ID=transformar_data
+AIRFLOW_CTX_EXECUTION_DATE=2022-09-05T18:50:11.403809+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-09-05T18:50:11.403809+00:00
+[2022-09-05, 19:50:22 UTC] {logging_mixin.py:115} INFO - Adquiriendo data para la  fecha: 2022-09-05 18
+[2022-09-05, 19:50:22 UTC] {logging_mixin.py:115} WARNING - /opt/***/dags/dag_pipeline_sencillo.py:36 FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument 'labels' will be keyword-only
+[2022-09-05, 19:50:22 UTC] {python.py:173} INFO - Done. Returned value was: None
+[2022-09-05, 19:50:22 UTC] {taskinstance.py:1420} INFO - Marking task as SUCCESS. dag_id=ingestion_data, task_id=transformar_data, execution_date=20220905T185011, start_date=20220905T195021, end_date=20220905T195022
+[2022-09-05, 19:50:22 UTC] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-09-05, 19:50:22 UTC] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

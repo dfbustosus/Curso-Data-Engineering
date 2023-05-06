@@ -1,0 +1,46 @@
+0. Crear una carpeta que se llame microdesafio
+cd 'Clase 10/Microdesafio/'
+ls 
+
+1. Ir a postgresql y crear una base de datos: FIN_MUNDO
+2. Llenar el archivo docker-compose.yaml con el siguiente código:
+https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/docker-compose.yaml
+
+3. Lanzar airflow con docker con:
+docker-compose up
+
+4. Ir a http://localhost:8080/
+Loguearse con: usr: airflow , pwd= airflow
+
+5. Al lanzar airflow deberás crear una nueva conexión a la base de datos antes de ejecutar tu DAG para esto deberás hacer los siguientes pasos:
+
+a. Click en Admin> Connections
+b. Click en el botón +
+c. En Connection_id deberás colocar: postgres_localhost
+d. En Connection Type: Posgres
+e. En Host: host.docker.internal
+f. En SCHEMA: FIN_MUNDO
+g. En Login: posgres
+h. En Password la contraseña que creaste para la BD
+i. En Port: 5432
+
+6. Luego de esto podrás verificar la conexión dando click en Test. 
+Te deberá salir un mensaje en la parte superior avisando que se logró establecer la conexión
+
+7. Click en Save
+
+8. Dentro de la carpeta dags agregar este codigo
+https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2010/dag_postgres_database.py
+##############OJO CON LA FECHA: start_date=datetime(2023,5,6) ################################3
+
+9. CTRL+C en el terminal
+
+10. Luego volver a lanzar airflow: docker-compose up 
+
+11. Volver a logearte
+
+12. Luego de esto si podrás ejecutar tu DAG y ver los resultados en Logs
+
+Solución
+
+Si lograste realizar los pasos con éxito deberás ver los siguientes mensajes en los logs de la tarea 1 y tarea 2

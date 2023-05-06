@@ -1,0 +1,55 @@
+1. Ventajas y desventajas de Airflow
+
+Ventajas
+
+- Manejo de dependencias: tiene un gran manejo de dependencias entre tareas permitiendo flujo de datos, 
+bifurcación compleja usando BranchPythonOperator, reintento de tareas, ejecuciones de actualización, etc. 
+- Macros y Templates: está diseñado para operar en un cronograma basado en el tiempo, generalmente volviendo a 
+ejecutar los mismos scripts con un rango de tiempo diferente
+- Operadores: tiene muchos operadores que puede usar para construir pipelines de manera sencilla
+- UI y logs:tiene una excelente interfaz de usuario, donde puede ver el estado de su DAG, 
+verificar los tiempos de ejecución, verificar los registros, volver a ejecutar tareas y mucho más. 
+- Basado en principios funcionales: Apache Airflow fue diseñado en base a principios funcionales. 
+Las ideas clave son la inmutabilidad de los datos y la idempotencia.
+- La inmutabilidad de los datos es almacenar los datos sin procesar y procesarlos y almacenar los
+ datos procesados por separado. Esto nos brinda la opción de volver a ejecutar el proceso de datos en caso de errores. 
+- La idempotencia es un proceso en el que dada una entrada, la salida siempre será la misma. 
+Esto hace que el proceso sea fácil de probar y volver a ejecutar.
+- Gratuita
+- Es un proyecto de código abierto muy activo con una gran comunidad. 
+
+Desventajas
+
+- Procesamiento no tan intuitivo para principiantes
+- Los nuevos ingenieros tienen dificultades para internalizar la forma en que Airflow debe usarse
+- Cambiar el intervalo de programación requiere modificar el nombre del DAG
+- Si decides cambiar el schedule, debes cambiar el nombre de tu DAG, aunque esto solo es para las versiones antiguas a la 1.8. 
+- CI/CD es complicado
+- Si estás implementando Airflow en Docker, el proceso de CI/CD que reinicia el contenedor de Docker eliminará cualquier proceso en ejecución, tendrá que cronometrar sus implementaciones para que se correspondan con un tiempo sin actividad o ejecución(es) de DAG con las que estaría de acuerdo. siendo reiniciado o parcialmente reejecutado
+- No hay buen soporte en Windows
+- No es sencillo ejecutar Airflow de forma nativa en Windows. Pero esto se puede mitigar usando Docker.
+
+Algunas compañías que usan Apache Airflow
+
+- Airbnb
+- Slack
+- Square
+- Walmart
+- Robinhood
+
+Alternativas a Airflow
+
+ Luigi
+Un módulo de python que ayuda a desarrollar pipelines complejos. Maneja la resolución de dependencias, la gestión del flujo de trabajo, la visualización, etc. También viene con soporte Hadoop integrado
+Apache NiFi
+Un sistema fácil de usar, potente y fiable para procesar y distribuir datos. Admite grafos dirigidos potentes y escalables, transformación y lógica de mediación del sistema.
+Jenkins
+Es el principal servidor de integración continua de código abierto. Construido con Java, proporciona más de 300 complementos para respaldar la creación y prueba de prácticamente cualquier proyecto.
+AWS Step Functions
+Facilita la coordinación de los componentes de aplicaciones distribuidas y microservicios mediante flujos de trabajo visuales. La creación de aplicaciones a partir de componentes individuales, cada uno de los cuales realiza una función discreta, le permite escalar y cambiar las aplicaciones rápidamente.
+Pachyderm
+Es un motor de código abierto que utiliza contenedores Docker para cálculos distribuidos.
+Argo
+Es un motor de flujo de trabajo nativo de contenedor de código abierto para realizar el trabajo en Kubernetes.
+.Kubeflow
+Dedicado a hacer que Machine Learning en Kubernetes sea fácil, portátil y escalable al proporcionar una forma sencilla de poner en marcha las mejores soluciones OSS de su clase.
