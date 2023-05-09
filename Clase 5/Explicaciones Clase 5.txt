@@ -1,0 +1,111 @@
+########################################
+# Bases de datos columnares 
+
+Una tabla pivoteada es una característica popular en las bases de datos OLAP que permite a los usuarios resumir y analizar grandes cantidades de datos de forma rápida y sencilla.
+
+En una tabla dinámica, los datos se organizan en filas y columnas, y los usuarios pueden agrupar, filtrar y agregar los datos para crear vistas personalizadas de la información. Las tablas dinámicas brindan a los usuarios una herramienta flexible y poderosa para analizar y comprender datos complejos.
+
+RLE significa Run-Length Encoding, que es una técnica de compresión utilizada en las bases de datos OLAP para reducir la cantidad de espacio de almacenamiento necesario para almacenar grandes conjuntos de datos.
+
+En RLE, en lugar de almacenar cada valor individual en un conjunto de datos, una serie de valores idénticos consecutivos se almacenan como un valor único y su recuento correspondiente. 
+Por ejemplo, si un conjunto de datos contiene los valores "AAAAABBBBCCCC", RLE lo almacenaría como "5A4B4C". Esto puede reducir significativamente el espacio de almacenamiento necesario para almacenar el conjunto de datos.
+
+RLE es particularmente útil en bases de datos OLAP porque a menudo contienen grandes cantidades de 
+valores repetidos, como en datos de series de tiempo o datos geográficos. 
+Al usar RLE, las bases de datos OLAP pueden almacenar más datos en menos espacio, lo que puede
+ mejorar el rendimiento y reducir los costos.
+
+########################################
+# Amazon Redshift
+
+MPP: MPP significa Massively Parallel Processing, que es una técnica utilizada en la agrupación 
+para mejorar el rendimiento y la escalabilidad del procesamiento de datos.
+
+En MPP, un gran conjunto de datos se divide en subconjuntos más pequeños, que luego son procesados simultáneamente por múltiples nodos de procesamiento en un clúster. Cada nodo opera de forma independiente en su subconjunto de datos, y los resultados se combinan y se devuelven al usuario.
+
+Clustering: grupo de computadoras interconectadas en paralelo usualmente
+
+Nodo lider: punto de entrada al cluster, gestiona las comunicaciones y planifica la 
+tarea de la consulta devolviendo el resultado final, permisos
+
+Nodo de computos: realizan la tarea asignada cuentan con memoria, cpu y disco de alamacenamiento
+y devolver el resultado al nodo lider
+
+Slices: son parte del nodo de computo (logica) y dependen del tipo de nodo, 
+sirven para particionar la consulta que se esta realizando y paralelizar
+
+Analogia de explicacion >>>>>>>>>>>>>
+Imagina que eres el gerente de un restaurante y tienes un equipo de chefs trabajando en la cocina.
+Eres el nodo líder, responsable de administrar la coordinación general de la cocina, recibir pedidos
+de los clientes y delegar tareas a los chefs.
+
+Los chefs son los nodos de cómputo, responsables de preparar y cocinar la comida. Cada chef tiene
+su propio conjunto de herramientas y equipos, pero trabajan juntos para garantizar que la comida se cocine y prepare correctamente.
+
+Ahora, imagine que cada chef tiene una estación de trabajo con varios quemadores y tablas similares a los slices en Redshift. Cada herramienta de cortar representa una parte de la capacidad de procesamiento y almacenamiento del chef. Al dividir con las herramientas los chefs pueden preparar múltiples platos simultáneamente, al igual que Redshift puede procesar múltiples consultas en paralelo a través de sus porciones.
+
+#####################
+# Tecnologias similares a Redshift
+
+Teradata:
+Snowflake:
+Google Bigquery
+Azure Synapse: 
+
+
+Herramientas de ETLs
+AWS Glue - Azure Data Factory - Google Cloud Data flow
+
+Claves de parametrizacion:parámetros que se pueden establecer en el nivel de la base de datos, el esquema o la tabla para controlar cómo funciona el motor de la base de datos. Incluyen configuraciones como el tiempo de espera de la consulta, la asignación de memoria para las operaciones de clasificación y hash, y el nivel de registro de la consulta.
+
+Claves de ordenacion (SortKeys): estas son columnas que determinan el orden físico de los datos dentro de una tabla. Al especificar las claves de ordenación, Redshift puede optimizar el rendimiento de las consultas al reducir la cantidad de E/S de disco necesaria para recuperar datos.
+
+Metodos de compresion:para reducir la cantidad de espacio en disco utilizado por la base de datos mientras se mantiene el rendimiento de las consultas. Redshift admite varios métodos de compresión, incluida la codificación de longitud de ejecución, la codificación de diccionario y la codificación delta.
+
+Contraints:reglas que aseguran la integridad y consistencia de los datos. Redshift admite varios tipos de restricciones, como claves principales, claves externas y restricciones de verificación.
+
+###### DISTRIBUTION STYLES (4 tipos)
+
+1. EVEN: los datos se distribuyen uniformemente entre todos los nodos del clúster, lo que puede ser adecuado para tablas que no tienen una clave de combinación natural o que tienen un volumen bajo de datos.
+
+2. KEY: los datos se distribuyen en función de los valores de una columna elegida (la clave de distribución), lo que puede mejorar el rendimiento de la unión para las tablas que se unen con frecuencia en esa columna.
+
+3. ALL: se almacena una copia de la tabla completa en cada nodo del clúster, lo que puede ser útil para las tablas de búsqueda pequeñas que se unen con frecuencia a tablas más grandes.
+
+4. AUTO: Redshift determina automáticamente el mejor estilo de distribución en función del tamaño de la tabla, la cantidad de nodos y otros factores, lo que puede simplificar el diseño y el mantenimiento de la tabla.
+
+##### CLAVES 
+1. DISTKEY: Esto especifica la columna a usar para la distribución de datos cuando se usa DISTSTYLE KEY. 
+Cuando especifica una clave de distribución, Redshift genera un hash de los valores en esa columna y asigna filas con el mismo valor hash al mismo nodo de cálculo.
+
+2. SORTKEY: Esto especifica la columna o columnas que se usarán para ordenar los datos de la tabla en el disco.
+ Ordenar los datos puede mejorar el rendimiento de las consultas, especialmente cuando realiza consultas frecuentes  en columnas específicas.
+
+
+#### EXPLAIN 
+
+explain.dalibo.com
+
+
+- Query ineficiente:
+1. El primer paso es una combinación hash izquierda entre dos tablas, "clientes" y una subconsulta. La subconsulta implica una unión hash entre otras dos tablas, "agentes" y "llamadas". La condición de combinación para la combinación externa es "customerid" en la tabla de la izquierda que coincide con el mismo campo en la subconsulta. El coste estimado de este paso está entre 261,91 y 261,95 unidades.
+
+2. La subconsulta involucra un agregado hash que agrupa los resultados por algunos criterios que no se muestran en el plan. El coste estimado de este paso está entre 249,41 y 249,43 unidades.
+
+3. La unión hash dentro de la subconsulta hace coincidir las filas de la tabla "llamadas" con las filas de la tabla "agentes" según el campo "agentid". El coste estimado de este paso está entre 249,14 y 249,41 unidades.
+
+4. Otra combinación hash dentro de la subconsulta coincide con las filas de la combinación anterior en función de dos campos, "agentid" y "fastestcall" en las tablas respectivas. El costo estimado para este paso es entre 249.00 y 249.25 unidades.
+
+5. Un análisis de subconsulta llamado "min" implica un agregado hash que agrupa filas de la tabla "llamadas" según algunos criterios que no se muestran en el plan. El costo estimado para este paso es entre 124,50 y 124,52 unidades.
+
+6. La exploración de la tabla "llamadas" dentro de la subconsulta implica una exploración secuencial de la tabla y aplica un filtro a los resultados. La condición del filtro es "productos vendidos = 1". El costo estimado para este paso es entre 0.00 y 124.25 unidades.
+
+7. Otro escaneo en la tabla de "llamadas" dentro de la subconsulta implica un escaneo hash de la tabla y aplica un filtro a los resultados. La condición del filtro es "productos vendidos = 1". El costo estimado para este paso es entre 124,25 y 124,25 unidades.
+
+8. Un escaneo hash en la tabla "agentes" dentro de la subconsulta recupera todas las filas de la tabla. El coste estimado de este paso está entre 0,11 y 0,11 unidades.
+
+9. Un escaneo hash en la tabla "clientes" recupera todas las filas de la tabla. El costo estimado para este paso es entre 10.00 y 10.00 unidades.
+
+
+Las unidades en un plan de consulta de PostgreSQL no son directamente representativas de un costo monetario. En cambio, son una medida relativa del uso de recursos estimado (como el tiempo de CPU o la E/S de disco) necesarios para cada paso del plan de consulta.
+- Query eficiente:

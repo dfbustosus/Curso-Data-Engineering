@@ -276,8 +276,10 @@ consulta y mejorar su rendimiento.
 
 
 -- Ejemplo 2
+Seguir los pasos en:
+https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms
 -- Original
-
+SET STATISTICS TIME ON
 SELECT TOP 25
 	Product.ProductID,
 	Product.Name AS ProductName,
@@ -315,8 +317,17 @@ LEFT JOIN Production.UnitMeasure CostMeasure
 ON ProductVendor.UnitMeasureCode = CostMeasure.UnitMeasureCode
 ORDER BY Product.ProductID DESC;
 
--- optimizar
+Porque es ineficiente!!!!!!!!!!!!!!:
 
+La consulta puede ser ineficaz porque une muchas tablas e incluye muchas columnas, lo que puede provocar
+ que se procese y devuelva una gran cantidad de datos. Además, el uso de TOP 25 y la cláusula ORDER BY
+  puede requerir que el motor de la base de datos clasifique una gran cantidad de datos, lo que puede 
+  llevar mucho tiempo. Finalmente, el uso de LEFT JOIN puede ralentizar aún más la consulta, ya que 
+  requieren que el motor de la base de datos realice un trabajo adicional para hacer coincidir y combinar 
+  datos de diferentes tablas.
+
+-- optimizar
+SET STATISTICS TIME ON
 SELECT TOP 25
 	Product.ProductID,
 	Product.Name AS ProductName,
