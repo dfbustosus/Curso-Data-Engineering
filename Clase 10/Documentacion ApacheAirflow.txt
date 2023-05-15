@@ -1,0 +1,37 @@
+Apache Airflow es una plataforma de código abierto que le permite programar, monitorear y administrar flujos de trabajo y canalizaciones de datos complejos mediante programación. Proporciona una forma de definir un flujo de trabajo como una serie de tareas u operadores que se pueden organizar en un gráfico acíclico dirigido (DAG). Cada tarea representa un paso en el flujo de trabajo y el DAG describe las dependencias entre tareas.
+
+# Microdesafio 
+# docker.compose.yaml
+Este es un archivo de configuración para configurar un clúster básico de Apache Airflow con CeleryExecutor, Redis y PostgreSQL. El archivo de configuración está escrito en YAML y contiene variables de entorno que se usan para configurar el clúster de Airflow.
+
+El archivo de configuración incluye las siguientes variables que se pueden usar para configurar el clúster de Airflow:
+
+AIRFLOW_IMAGE_NAME: nombre de la imagen de Docker utilizada para ejecutar Airflow. El valor predeterminado es apache/airflow:2.3.3.
+AIRFLOW_UID: ID de usuario en contenedores Airflow. El valor predeterminado es 50000.
+_AIRFLOW_WWW_USER_USERNAME: Nombre de usuario para la cuenta de administrador (si se solicita). El valor predeterminado es airflow.
+_AIRFLOW_WWW_USER_PASSWORD: Contraseña de la cuenta de administrador (si se solicita). El valor predeterminado es airflow.
+_PIP_ADDITIONAL_REQUIREMENTS: requisitos adicionales de PIP para agregar al iniciar todos los contenedores. El valor predeterminado es una cadena vacía.
+El archivo de configuración define tres servicios:
+
+postgres: una base de datos PostgreSQL
+airflow-webserver: un servidor web Airflow
+airflow-scheduler: un programador de airflow
+Cada servicio se define con parámetros específicos, como el nombre de la imagen, las variables de entorno, los puertos, el control de estado y la política de reinicio. El servicio airflow-init se utiliza para inicializar la base de datos de Airflow y crear la cuenta de administrador.
+
+#### YAML
+YAML es un formato de datos de serialización legible por humanos que se utiliza para representar información estructurada en forma de texto plano. YAML significa "YAML Ain't Markup Language" (YAML no es un lenguaje de marcado) y se utiliza comúnmente para la configuración de software, intercambio de datos, generación de informes y otros fines.
+
+Los archivos YAML se pueden leer y editar con un editor de texto simple y son utilizados por muchos sistemas y lenguajes de programación, incluyendo Docker, Kubernetes, Ansible, Python, Ruby y muchos otros.
+
+### docker-compose up
+
+El comando docker-compose up se usa para iniciar todos los contenedores que están definidos en un archivo Docker Compose. Leerá el archivo Docker Compose, creará las imágenes necesarias e iniciará los contenedores como se describe en el archivo. Si hay algún cambio en el archivo Compose, puedes ejecutar docker-compose up --build para reconstruir las imágenes antes de iniciar los contenedores.
+
+
+
+
+# Catchup y backfilling
+
+CatchUp (Ponerse al día) se refiere a la función de Airflow que le permite ejecutar un DAG para todos los intervalos que se perdieron mientras el DAG estaba inactivo. Por ejemplo, si tiene un DAG que se ejecuta todos los días, pero estuvo en pausa durante una semana, puedes habilitar la recuperación para asegurarse de que el DAG se ejecute para todos los intervalos perdidos cuando se reanude.
+
+Backfilling (reposición) es el proceso de ejecutar un DAG en un intervalo de fechas específico en el pasado. Esto es útil cuando tiene un DAG nuevo que necesita procesar datos del pasado, o si ha realizado cambios en un DAG existente y necesita volver a ejecutarlo para un rango de fechas específico.

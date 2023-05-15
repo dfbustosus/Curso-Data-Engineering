@@ -1,0 +1,21 @@
+0. Ir a email gmal > configuracion de cuenta >seguridad > Activar Less Secure apps
+En caso de que tengas autenticacion de dos pasos no sera necesario hace resto
+1. Click en configuracion > ver toda la configuracion > Reenvio y correo POP/IMAP
+Verificar que diga: IMAP está habilitado.
+2. Asegurarse que el docker compose en volumes tenga lo ssiguiente:
+- ./config:/opt/airflow
+3. Configurar el archivo Airflow.cfg , linea 714 en esta seccion:
+smtp_host = smtp.gmail.com 
+smtp_starttls = True 
+smtp_ssl = False 
+# Example: smtp_user = airflow 
+smtp_user = tu_correo_electronico 
+# Example: smtp_password = airflow 
+# smtp_password = tu_password
+smtp_port = 587 
+smtp_mail_from = email_desde_donde_quieres_enviar
+
+
+!!!!!!!!!!!!!!!! IMPORTANTE !!!!!!!!!!!!!!!!!!!!!1
+Contraseña Windows google gmail: hrbnrdjxzvxihiey
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

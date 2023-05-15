@@ -42,11 +42,14 @@ Alternativas a Airflow
  Luigi
 Un módulo de python que ayuda a desarrollar pipelines complejos. Maneja la resolución de dependencias, la gestión del flujo de trabajo, la visualización, etc. También viene con soporte Hadoop integrado
 Apache NiFi
-Un sistema fácil de usar, potente y fiable para procesar y distribuir datos. Admite grafos dirigidos potentes y escalables, transformación y lógica de mediación del sistema.
+Un sistema fácil de usar, potente y fiable para procesar y distribuir datos. 
+Admite grafos dirigidos potentes y escalables, transformación y lógica de mediación del sistema.
 Jenkins
-Es el principal servidor de integración continua de código abierto. Construido con Java, proporciona más de 300 complementos para respaldar la creación y prueba de prácticamente cualquier proyecto.
+Es el principal servidor de integración continua de código abierto. Construido con Java, 
+proporciona más de 300 complementos para respaldar la creación y prueba de prácticamente cualquier proyecto.
 AWS Step Functions
-Facilita la coordinación de los componentes de aplicaciones distribuidas y microservicios mediante flujos de trabajo visuales. La creación de aplicaciones a partir de componentes individuales, cada uno de los cuales realiza una función discreta, le permite escalar y cambiar las aplicaciones rápidamente.
+Facilita la coordinación de los componentes de aplicaciones distribuidas y microservicios mediante 
+flujos de trabajo visuales. La creación de aplicaciones a partir de componentes individuales, cada uno de los cuales realiza una función discreta, le permite escalar y cambiar las aplicaciones rápidamente.
 Pachyderm
 Es un motor de código abierto que utiliza contenedores Docker para cálculos distribuidos.
 Argo

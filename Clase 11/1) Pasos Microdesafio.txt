@@ -1,0 +1,136 @@
+1. Crear un folder Microdesafio
+#### CONFIGURACION GENERAL DEL EMAIL ##########
+2. Ir a email gmal > Destionar Cuenta de google>  configuracion de cuenta >seguridad > Activar Less Secure apps o Activa autenticacion
+en 2 pasos (lo sugerido por mi)
+'''
+Documentacion
+Note: When 2-step Verification is turned on for an account, access to less secure apps is automatically disabled, 
+unless users are in a configuration group that allows access to less secure apps. Go to Manage access to less secure apps below.
+'''
+2.1. Accede a tu cuenta gmail, luego ve a Gestionar tu cuenta de Google > Seguridad y activa la verificación de dos pasos 
+para esto puedes seguir los siguientes pasos
+
+En caso de que tengas autenticacion de dos pasos no sera necesario hace resto
+
+3. Click en configuracion > ver toda la configuracion > Reenvio y correo POP/IMAP
+Verificar que diga: IMAP está habilitado.
+
+4.	Luego de esto vuelve a ir a la pestaña seguridad de tu cuenta y selecciona la opción Contraseñas de aplicaciones 
+luego deberás ingresar tu contraseña de login, luego de esto aparecerá una nueva ventana donde deberá elegir en aplicación correo 
+y en dispositivo el ordenador que estés usando. 
+
+Pasos:
+a. Cómo inicias sesión en Google
+b. Verificacion en 2 pasos
+c. Abajo en: Contraseñas de aplicaciones
+d. Contraseñas de aplicaciones
+e. Seleccionar aplicacion: correo
+f. Elegir el dispositivo que estes usando: Ordenador con Windows
+Guardala muy bien porque no es tan facil conseguirla
+
+Al finalizar obtendrás una contraseña de aplicación que deberás guardar porque la utilizaremos posteriormente
+Contraseña: xxxxxxxxxxxxxxxxxx
+
+5. Crea subcarpetas en la Carpeta Microdesafio con los nombres: dags, logs y plugins vacías  
+
+6. Dentro de la carpeta Microdesafio crea el archivo docker-compose.yaml con este archivo: 
+https://github.com/CoderContenidos/Data.Engineering/blob/main/Semana%2011/docker-compose.yaml´
+
+Invoke-WebRequest -Uri 'https://airflow.apache.org/docs/apache-airflow/2.6.0/docker-compose.yaml' -OutFile 'docker-compose.yaml'
+
+7. Asegurarse que el docker compose en volumes tenga lo siguiente entre lineas 60 y 66:
+- ./config:/opt/airflow
+
+8. Ir a la carpeta de destion: cd 'Clase 11/Microdesafio/'
+
+9. Lanzar el contendor e imagenes: docker-compose up 
+
+10. Aparecerá una nueva carpeta llamada config y dentro de ella un archivo llamado airfow.cfg el cual deberás 
+editar entre la línea 654-671 de la siguiente manera:
+````
+[smtp]
+
+# If you want airflow to send emails on retries, failure, and you want to use
+# the airflow.utils.email.send_email_smtp function, you have to configure an
+# smtp server here
+smtp_host = smtp.gmail.com
+smtp_starttls = True
+smtp_ssl = False
+# Example: smtp_user = airflow
+smtp_user = cuenta_gmail@gmail.com
+# Example: smtp_password = airflow
+smtp_password = password
+smtp_port = 587
+smtp_mail_from = cuenta_gmail@gmail.com
+smtp_timeout = 30
+smtp_retry_limit = 5
+
+[sentry]
+```
+
+cuenta_gmail representa tu cuenta de gmail y el password corresponde a la contraseña que generaste en el paso 4
+
+11. Ahora dentro de la carpeta dags crea un nuevo archivo de Python y llénalo el siguiente codigo en dag_smtp_emails.py:
+```python 
+from datetime import datetime
+from email import message
+from airflow.models import DAG, Variable
+from airflow.operators.python_operator import PythonOperator
+
+import smtplib
+
+pais=['Argentina','Brasil','Colombia','Chile','Paraguay','Uruguay','Venezuela','Peru','Ecuador','Bolivia','México']
+acronimo= ['AR','BR','CO','CL','PY','UR','VE','PE','EC','BO','MX']
+lista_fin_mundo=[2040,2080,2095,2100,2089,2093,2054,2078,2079,2083,2071]
+
+texto=[]
+
+for i in range(len(pais)):
+    string='Pais {} ({}), Fecha fin mundo estimada: {}'.format(pais[i], acronimo[i],lista_fin_mundo[i])
+    texto.append(string)
+
+final = '\n'.join(texto)
+print(final)
+
+def enviar():
+    try:
+        x=smtplib.SMTP('smtp.gmail.com',587)
+        x.starttls()
+        x.login('davidbustosusta@gmail.com','contraseña') # Cambia tu contraseña !!!!!!!!
+        subject='Fechas fin del mundo'
+        body_text=final
+        message='Subject: {}\n\n{}'.format(subject,body_text)
+        x.sendmail('davidbustosusta@gmail.com','aileddelacruzpaez@gmail.com',message)
+        print('Exito')
+    except Exception as exception:
+        print(exception)
+        print('Failure')
+
+default_args={
+    'owner': 'DavidBU',
+    'start_date': datetime(2023,5,14)
+}
+
+with DAG(
+    dag_id='dag_smtp_email_fin_mundo',
+    default_args=default_args,
+    schedule_interval='@daily') as dag:
+
+    tarea_1=PythonOperator(
+        task_id='dag_envio_fin_mundo',
+        python_callable=enviar
+    )
+
+    tarea_1
+```
+
+NO OLVIDES CAMBIAR LE FECHA: 'start_date': datetime(2023,5,13), ponerlo un dia antes
+
+12.	Ahora podrás abrir tu entorno de airflow y buscar el dag llamado dag_smtp_email_automatico: localhost:8080
+13. Si no sale vuelve a lanzar el : docker-compose up
+docker-compose up -d
+docker-compose logs -f 
+14.	Lo podrás ejecutar y veras que el mensaje que creamos se enviará al destinatario de interés
+
+
+

@@ -13,7 +13,7 @@ with DAG(
     default_args=default_args,
     dag_id='dag_con_conexion_postgres',
     description= 'Nuestro primer dag usando python Operator',
-    start_date=datetime(2023,5,6),
+    start_date=datetime(2023,5,11),
     schedule_interval='0 0 * * *'
     ) as dag:
     task1= PostgresOperator(
