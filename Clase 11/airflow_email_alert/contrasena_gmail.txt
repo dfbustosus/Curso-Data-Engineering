@@ -14,8 +14,3 @@ smtp_user = tu_correo_electronico
 # smtp_password = tu_password
 smtp_port = 587 
 smtp_mail_from = email_desde_donde_quieres_enviar
-
-
-!!!!!!!!!!!!!!!! IMPORTANTE !!!!!!!!!!!!!!!!!!!!!1
-Contraseña Windows google gmail: hrbnrdjxzvxihiey
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
