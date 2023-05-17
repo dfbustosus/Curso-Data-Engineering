@@ -6,3 +6,8 @@ df.head()
 print(df.columns)
 # Elegir columnas de interés
 print(df[['index','ID','Year_Birth','Education','Income']].head())
+# Subset
+df1=df.head()
+# Exportar
+df1.to_csv('archivo_p.csv',sep=',',index=False)
+
