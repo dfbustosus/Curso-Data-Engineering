@@ -1,0 +1,192 @@
+## Docker file tipico
+# .dockerignore
+Que escluya los directorios temp, .git, and .DS_Store
+directories:
+*/temp*
+.DS_Store
+.git
+
+# Build usando un docker file sencillo
+FROM ubuntu:latest
+CMD echo Hola mundo!
+
+docker build .
+
+Si lo intentamos hacer de nuevo
+docker build .
+
+Te daras cuenta que es mucho mas rapido ahora porque le memoria cache se guarda
+
+Buscamos al imagen con: docker images
+
+docker run <imagen_id>
+
+###### INTRUCCIONES DEL DOCKERFILE ########
+1. FROM
+Puede ser de tres formas
+FROM <image> [AS <name>]
+FROM <image>[:<tag>] [AS <name>]
+FROM <image>[@<digest>] [AS <name>]
+
+2. WORKDIR
+WORKDIR /path/to/directory
+
+Ejemplo
+FROM ubuntu:latest
+WORKDIR /app
+CMD pwd
+
+docker build -t david/workdir .
+
+docker run david/workdir
+
+Ahora hagamos un cambio:
+
+FROM ubuntu:latest
+WORKDIR /usr
+WORKDIR src
+WORKDIR app
+CMD pwd
+
+docker build -t david/workdir .
+docker run david/workdir 
+
+# Otro ejemplo para que se vea que el direcotrio es relativo
+FROM ubuntu:latest
+WORKDIR var
+WORKDIR log/nginx
+CMD pwd
+
+docker build -t david/workdir .
+
+docker run david/workdir
+
+Puedes ver que los directorios relativos se van agregando
+
+
+3. ADD y COPY
+ADD <source> <destination>
+COPY <source> <destination>
+
+ADD requirements.txt /usr/share/app
+COPY requirements.txt /usr/share/app
+
+Tambien cuentan con shortcuts como:
+ADD *.py /apps/
+COPY *.py /apps/
+
+4. RUN
+
+FROM ubuntu:latest
+RUN apt-get update
+
+docker build -f Dockerfile .
+
+En el Dockerfile tambien podrias tener:
+
+RUN apt-get update
+RUN apt-get install pkg1
+RUN apt-get install pkg2
+RUN apt-get install pkg3
+
+5. CMD o ENTRYPOINT
+
+FROM ubuntu:latest
+RUN apt-get update && \
+apt-get install -y curl && \
+rm -rf /var/lib/apt/lists/*
+CMD ["curl"]
+
+docker build –t david/curl .
+
+docker run david/curl
+
+Pero pasar flags puede ser tedioso
+
+Si modificamos el dockerfile:
+FROM ubuntu:latest
+RUN apt-get update && \
+apt-get install -y curl
+ENTRYPOINT ["curl", "-s"]
+
+docker build -t david/curl .
+
+docker run david/curl wttr.in
+
+# 6. ENV
+
+ENV <key> <value>      >> permite una soal
+ENV <key>=<value> ...  >> permite multiples
+
+Ejemplo.
+FROM ubuntu:latest
+ENV LOGS_DIR="/var/log"
+ENV APPS_DIR /apps/
+
+docker build -t david/env .
+
+docker inspect david/env
+
+Debera aparecerte:
+ "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LOGS_DIR=/var/log",
+                "APPS_DIR=/apps/"
+            ]
+
+Las variables de entorno se pueden modificar cuando se corra el container:
+docker run -it -e LOGS_DIR="/logs" david/env
+
+printenv | grep LOGS
+
+# 7. VOLUME
+VOLUME /var/logs/nginx
+
+# 8. EXPOSE
+EXPOSE <port> [<port>/<protocol>...]
+
+Ejemplo:
+
+FROM nginx:alpine
+EXPOSE 80
+
+docker build -t david/expose .
+docker run -d -p 8080:80 david/expose
+
+curl http://localhost:8080
+
+# 9. LABEL
+LABEL <key>=<value> <key>=<value> <key>=<value> …
+
+# Otro ejemplo
+Creemos una rchivo requirements.txt
+
+praw==3.6.0
+
+Dockerfile:
+FROM python:3
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+docker build -t david/base-build .
+docker images david/base-build
+
+
+
+Ahora si lo queremos hacer en multietapa podemos poner:
+FROM python:3 as python-base
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+FROM python:3-alpine
+COPY --from=python-base /root/.cache /root/.cache
+COPY --from=python-base requirements.txt .
+RUN pip install -r requirements.txt && rm -rf /root/.cache
+
+docker build -t david/base-build .
+docker images david/base-build
+
+El Dockerfile es diferente en el sentido de que hay varias declaraciones FROM, lo que significa las diferentes etapas. En la primera etapa, construye los paquetes requeridos usando la imagen python:3, que tiene las herramientas de construcción necesarias
+
+En la segunda etapa, copia los archivos instalados en la primera etapa, los vuelve a instalar (observe que esta vez pip recupera los archivos almacenados en caché y no los vuelve a compilar) y luego elimina los archivos de instalación almacenados en caché.
+
+Esto se traduce entonces en menos espacio mas eficiencia y mas rapidez
