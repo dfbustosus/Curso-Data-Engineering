@@ -9,7 +9,7 @@ def enviar():
     try:
         x=smtplib.SMTP('smtp.gmail.com',587)
         x.starttls()
-        x.login('davidbustosusta@gmail.com','xxxxxxxxxxxxxxxxxxxxxxxx')
+        x.login('davidbustosusta@gmail.com','aktmoeuyblqjuryn')
         subject='Ganaste un premio'
         body_text='Has ganado un premio fantastico!!!!'
         message='Subject: {}\n\n{}'.format(subject,body_text)
@@ -21,7 +21,7 @@ def enviar():
 
 default_args={
     'owner': 'DavidBU',
-    'start_date': datetime(2023,5,13)
+    'start_date': datetime(2023,5,17)
 }
 
 with DAG(

@@ -1,6 +1,6 @@
 1. Crear un folder Microdesafio
 #### CONFIGURACION GENERAL DEL EMAIL ##########
-2. Ir a email gmal > Destionar Cuenta de google>  configuracion de cuenta >seguridad > Activar Less Secure apps o Activa autenticacion
+2. Ir a email gmal > Gestionar Cuenta de google>  configuracion de cuenta >seguridad > Activar Less Secure apps o Activa autenticacion
 en 2 pasos (lo sugerido por mi)
 '''
 Documentacion
@@ -16,6 +16,7 @@ En caso de que tengas autenticacion de dos pasos no sera necesario hace resto
 Verificar que diga: IMAP está habilitado.
 
 4.	Luego de esto vuelve a ir a la pestaña seguridad de tu cuenta y selecciona la opción Contraseñas de aplicaciones 
+Cómo inicias sesión en Google >> Verificacion de dos pasos
 luego deberás ingresar tu contraseña de login, luego de esto aparecerá una nueva ventana donde deberá elegir en aplicación correo 
 y en dispositivo el ordenador que estés usando. 
 
