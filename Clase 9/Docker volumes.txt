@@ -96,7 +96,6 @@ cat host-home-file.txt
 Tambien deberia estar en tu ruta el archivo es decir que se crear dentro y fuera del container
 
 Ahora paremos y borremos el container
-
 docker stop bind-mount-container
 docker rm bind-mount-container
 cd "C:\Users\Windows"
@@ -106,10 +105,9 @@ Veras el contenido a pesar de que lo borramos el container
 Importante el flujo de datos va en ambos sentidos en el host de Docker y en el contenedor. Cualquier acción destructiva (como eliminar un directorio) también tendrá un impacto negativo en el host de Docker.
 
 Puedes tambien crear el container con la opcion de escritura deshabilitado
-docker run -it --name bind-mount-container -v C:\Users\Windows:/host-home:ro ubuntu bash
+docker run -it --name read-only-bind-mount -v C:\Users\Windows:/host-home:ro ubuntu bash
 
-docker run -it --name read-only-bind-mount -v $HOME:/hosthome:
-ro ubuntu bash
+docker run -it --name read-only-bind-mount -v $HOME:/hosthome:ro ubuntu bash
 
 docker inspect read-only-bind-mount
 
@@ -131,7 +129,7 @@ docker run -it --name read-only-bind-mount -v C:\Users\Windows:/host-home:ro ubu
 
 cd host-home
 ls
-echo "Hola esto lo creo David con el kernel `uname -r`" > host-home-file.txt
+echo "Hola esto lo creo David con el kernel `uname -r`" > host-home-file1.txt
 
 Te saldra el mensaje
 bash: host-home-file.txt: Read-only file system

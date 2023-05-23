@@ -1,0 +1,212 @@
+Docker networks 
+
+Muchas soluciones computacionales se piensan para que sirvan para un solo proposito. aunque con los containers livianos de Docker asi como la presencia de herramientas de orquestacion con Kubernetes es bastante comun que containers multiples tengan diferents flujos de trabajo en el mismo o distintos hosts
+
+En Docker tenemos distintos tipos de Network Drivers
+
+- Bridge 
+- Host 
+- Overlay 
+- Macvlan
+- None
+
+# 1 Bridge
+Es una red definida por el usuario que permite que todos los contianers conectados en la misma red se puedan comunicar entre si. Usualmente cuando instalas Docker esto se crea por default pero tambien se puede crearlo por uno mismo
+
+# 2 Host
+Los containers se agregan al Docker host, esto implica que el trafico entrante al host se ruta por el container 
+
+# 3 Overlay
+Crean una red entre multiples docker hosts, permitiendo que los containers conextados puedan comunicarse entre multiples hosts (No es lo mismo que bridge). Es un concepto mas avanzado porque puede permitir encriptar data
+
+# 4 Macvlan
+Se basa en la habilidad del Kernel de Linux para asignar multiples direcciones logicas MAC a una interfaz fisica (de forma aparente). Pero para esto se requieren de dependencias como Tarjetas de interfaz de redes (NIC) para permitir lo que se conoce como el modo promiscuo 
+
+# None 
+En muchos casos simplemente cuando no necesitamos trafico externo a la aplicacion solamente desactivamos las networks por distintas razones
+
+Ej: 
+docker run -d --name nginx --network=none -p 80:80 nginx
+
+curl localhost
+
+Si abrimos el container:
+docker exec -it nginx sh
+curl google.com
+
+Te debe mostrar que tampoco permite la salida de trafico
+No envia ni recibe nada
+
+## TRABAJANDO CON LAS NETWORKS
+Solo vamos a mostrar el comportamiento de Bridge porque es lo mas usado 
+
+docker network
+
+Para listar las dispnibles
+docker network ls 
+
+Para obtener detalles
+docker network inspect <network id or name>
+docker network inspect bridge
+
+# Ejemplo aplicado Bridge Netwrok
+Creemos dos containers:
+1. MySQL database
+2. adminer un portal web para manejar bases de datos MySQL
+
+
+docker run -d --name mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=dontusethisinprod mysql:8
+
+docker logs -f mysql
+
+En otro terminal podemos abrir el otro container
+docker run -d --name adminer -p 8080:8080 adminer
+
+docker logs -f adminer
+
+En otro terminal
+docker inspect mysql
+docker inspect adminer
+
+Podremos ver algo como esto:
+
+ "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "629db51a86e4ef13713785b7386a1131f4ceb9542f0ff1945888fb9b7487dfa7",
+                    "EndpointID": "4579f9acb4cb0d6d5f59fa3d960b1be2ba70bf13713cdb57f5ac5e49a42f8dbf",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:03",
+                    "DriverOpts": null
+                }
+            }
+
+"IPAddress": "172.17.0.3" es el gateway en este caso, sin embargo como ambos containers se montan en el host IP 0.0.0.0 podremos conectarnos a traves de este 
+
+Vamos a: http://localhost:8080/
+
+Buscamos la diracccion ip del container
+docker ps -a
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 4ce886f7b331
+
+En Server colocamos: 172.17.0.2
+User: root
+pwd: dontusethisinprod
+
+## Creando Bridge Networks con nombre
+docker network create database
+docker network inspect database
+
+Aqui veremos que la network se ha creado en la subnet: "Subnet": "172.28.0.0/16"
+
+Ahora paremos todos los containers
+docker ps -a
+docker stop d30918b3dd70 
+docker rm d30918b3dd70 
+
+Volvemos a levantar el service:
+docker run -d --network database --name mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=dontusethisinprod mysql:8
+
+El --network flag dice que network queremos poner en el container
+
+docker logs -f mysql
+
+Ahora inspeccionamos
+docker inspect mysql
+
+"database": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "bcab45085cfc"
+                    ],
+                    "NetworkID": "73540fecfe18a71a911c45320e9bd032c0f907408f6c31f0bfb29f65d6cbdb6f",
+                    "EndpointID": "ee9cf7a72f165ae2f7ba3d0ac1b0361aab367b9f54ebd6c01650f5d6a24c64d0",
+                    "Gateway": "172.28.0.1",
+                    "IPAddress": "172.28.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:1c:00:02",
+                    "DriverOpts": null
+                }
+            }
+
+Veras que database esta en la parte de redes
+docker network inspect database
+
+Levantemos el adminer
+docker run -d --name adminer -p 8080:8080 adminer
+
+# Conectando containers con Bridge Networks
+Notacion:
+docker network connect <network name> <container name>
+
+docker network connect database adminer
+docker inspect adminer
+
+Deberas ver dos networks:
+"MacAddress": "02:42:ac:11:00:02",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "629db51a86e4ef13713785b7386a1131f4ceb9542f0ff1945888fb9b7487dfa7",
+                    "EndpointID": "986d8f646bd45517463901d13c6992c0814bb095574f5aece7998f90bfc2dc0e",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null
+                },
+                "database": {
+                    "IPAMConfig": {},
+                    "Links": null,
+                    "Aliases": [
+                        "60a702c7984d"
+                    ],
+                    "NetworkID": "73540fecfe18a71a911c45320e9bd032c0f907408f6c31f0bfb29f65d6cbdb6f",
+                    "EndpointID": "4d359512b6ae261214eb4c22b2cf38cf19c18988b5df8bf6060ea98c60369d94",
+                    "Gateway": "172.28.0.1",
+                    "IPAddress": "172.28.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:1c:00:03",
+                    "DriverOpts": {}
+                }
+            }
+        }
+
+Desconectemos el brigde:
+docker network disconnect bridge adminer
+docker inspect adminer
+
+Ya deberia salir solo una network:
+Vamos a: http://localhost:8080/
+
+Server: mysql
+Username: root
+pwd: dontusethisinprod
+
+
+# Host networks
+docker run -d --network host -p 8080:80 nginx:alpine
+docker run -d --network host nginx:alpine
+
+
+
