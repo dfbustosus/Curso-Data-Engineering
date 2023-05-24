@@ -102,8 +102,8 @@ User: root
 pwd: dontusethisinprod
 
 ## Creando Bridge Networks con nombre
-docker network create database
-docker network inspect database
+docker network create database1
+docker network inspect database1
 
 Aqui veremos que la network se ha creado en la subnet: "Subnet": "172.28.0.0/16"
 
@@ -113,7 +113,7 @@ docker stop d30918b3dd70
 docker rm d30918b3dd70 
 
 Volvemos a levantar el service:
-docker run -d --network database --name mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=dontusethisinprod mysql:8
+docker run -d --network database1 --name mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=dontusethisinprod mysql:8
 
 El --network flag dice que network queremos poner en el container
 
@@ -151,7 +151,7 @@ docker run -d --name adminer -p 8080:8080 adminer
 Notacion:
 docker network connect <network name> <container name>
 
-docker network connect database adminer
+docker network connect database1 adminer
 docker inspect adminer
 
 Deberas ver dos networks:

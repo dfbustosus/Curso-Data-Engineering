@@ -1,0 +1,178 @@
+# Docker compose 
+
+Herramienta para ejecutar aplicaciones de múltiples contenedores, abrir varios contenedores dependientes vinculados y más, y todo con solo un archivo de configuración y un comando.
+
+Con solo proporcionar un archivo YAML que describa los contenedores necesarios y la relación entre los contenedores, Docker Compose nos permite mostrar todos los contenedores con un solo comando. Y no se trata solo de mostrar los contenedores: Docker Compose también nos permite hacer lo siguiente:
+
+• Crear, detener e iniciar los contenedores asociados con la aplicación.
+• Seguir los registros de los contenedores en ejecución, ahorrándote la molestia de tener que abrir múltiples sesiones de terminal para cada contenedor.
+• Ver el estado de cada contenedor
+
+Esto esta enmarcado en un concepto que se llam CI
+
+
+Ya esta instalado por default en Docker-desktop
+
+- docker-compose version 
+
+Este archivo define los servicios, las redes y los volúmenes necesarios para que se inicie la aplicación. Docker espera que el archivo Compose esté presente en la misma ruta donde se invoca el comando docker-compose y que se llame docker-compose.yaml (o docker-compose.yml). Esto se puede anular usando el indicador -f seguido de la ruta al nombre de archivo de Compose.
+
+# Ejemplo 
+services: 
+  mysql: 
+    image: mysql 
+    environment: 
+        MYSQL_ROOT_PASSWORD: dontusethisinprod
+    ports: 
+        - 3307:3306
+    volumes: 
+        - dbdata:/var/lib/mysql
+  adminer: 
+    image: adminer 
+    ports: 
+        - 8080:8080
+         
+volumes: 
+  dbdata:
+
+docker-compose config 
+docker-compose up -d
+docker-compose logs
+
+En el login:
+Server: mysql
+Username: root
+pwd: dontusethisinprod
+
+Si quieres mostrar algunas lineas
+docker-compose logs --tail=5
+
+Parar los containers se hace con:
+docker-compose stop
+
+Para iniciarlos de nuevo:
+docker-compose start
+
+Si quieres detener y remover los containers, networks y columenes asociados puedes usar:
+docker-compose down
+
+
+# Algunos comandos importantes de Docker-Compose
+
+# 1. Services
+Es el primer root y tiene la configuracion del container para ser creado
+# 2 Build
+El build es para construir imagenes o servicios
+services: 
+  app: 
+     build: ./app
+     environment: 
+services:
+  app:
+      build:
+          context: ./app
+          dockerfile: dockerfile-app
+# 3 Context
+Permite dar contexto al build 
+build:
+    context: ./app
+    Dockerfile: dockerfile-app
+
+# 4 Image key
+Si se quiere poner un nombre especifico
+services: 
+  app: 
+     build: ./app
+     image: david:app
+
+# 5 environment
+Aqui podemos poner variables de entorno como API_KEYS o rutas
+services: 
+  app: 
+     image: mysql
+     environment: 
+         PATH: /home 
+         API_KEY= apikey
+
+Otro ejemplo puede ser:
+services: 
+  app: 
+     image: mysql
+     env_file: .env
+
+services: 
+  app: 
+     image: mysql
+     env_file: 
+         - common.env
+         - app.env
+         - secrets.env
+
+
+# 6 depends_on 
+Permite setear requerimientos de dependencias
+services: 
+  database: 
+     image: mysql
+  webserver:
+     image: nginx:alpine 
+     depends_on:
+         - cache
+         -database
+  cache:
+     image: redis
+
+Esto indica que antes de iniciar el server deber traer las dependencias previas
+
+# 7 image 
+Especifica la imagen para construir el container
+
+services:
+    database:
+        image: mysql
+
+# 8 ports
+Especifica los puertos que estaran expuestos
+
+services:
+    database:
+        image: nginx
+        ports: "8080:80"
+services:
+    database:
+        image: nginx 
+        ports:
+            - "80"
+
+# 9 Volumes
+services:
+    database:
+        image: mysql
+        environment:
+            MY_SQL_ROOT_PASSWORD: password
+        volumes:
+            - "dbdata:/var/lib/mysql/"
+    webserver:
+       image: nginx:alpine
+       depends_on:
+           - cache 
+           - database
+    cache:
+        image: redis 
+volumes:
+    dbdata:
+
+
+
+        ports: "8080:80"
+services:
+    database:
+        image: nginx 
+        ports:
+            - "80"
+
+
+Ejemplo de Django:
+---------------------
+
+
