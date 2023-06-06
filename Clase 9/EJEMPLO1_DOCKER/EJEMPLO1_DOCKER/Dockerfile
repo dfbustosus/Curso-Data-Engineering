@@ -1,4 +1,5 @@
 FROM python:3
+RUN pip install nltk
 RUN  mkdir WORK_REPO
 RUN  cd  WORK_REPO
 WORKDIR  /WORK_REPO

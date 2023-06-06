@@ -1,0 +1,48 @@
+Microdesafío
+
+NERT una compañía que se dedica a investigar cuando podría ser el final del mundo se dió cuenta que algunos países fueron cambiando sus predicciones a medida que van investigando más y van conociendo cómo cambian las dinámicas sociales, culturales y ambientales a lo largo de todo el mundo. 
+
+NERT quiere saber el cambio de predicciones ASAP. Cómo harías con alguna arquitectura vista en la semana 11 para hacer que NERT sepa lo antes posible si hubo un cambio en la predicción de algún país en particular.
+
+Ten en cuenta que algunos países no se llevan muy bien entonces la opción de tener una fuente de datos centralizada NO ES POSIBLE.
+
+Tips
+1.	Tener en cuenta los conceptos de consumers y Producers
+2.	Revisar el fundamento de stream processing
+3.	Identificar cuántos consumers y producers son necesarios para resolver el problema
+
+Solución
+Lo ideal es que haya una arquitectura Pub/Sub donde cada país es un "producer" que produce alertas en caso de que hayan cambiado sus predicciones e informen cuál es el nuevo año o fecha cuando será el fin del mundo.
+
+NERT luego entonces  tendrá un sólo “consumer” escuchando constantemente uno o varios TOPICS que puedan llegar alertas. Puede haber 1 Topic por cada país o que todos manden al mismo topic PERO que su mensaje tenga el código o string con su propio país para distinguir los valores de cada país.
+
+############################################
+
+Esquema Pub Sub: https://dashbird.io/wp-content/uploads/2021/01/pub-sub-messaging.png
+Que es la arquitectura Pub/Sub:
+
+Pub/Sub (Publish/Subscribe) es una arquitectura de mensajería que facilita el intercambio de mensajes entre Pub y Suscriptores de forma desacoplada. Proporciona una forma fácil y escalable de distribuir mensajes a múltiples destinatarios sin que interactúen directamente entre sí. 
+
+1. Pubs: Los editores son entidades que generan y envían mensajes. Publican mensajes a temas predefinidos sin ningún conocimiento de los suscriptores. Los publicadores pueden ser aplicaciones, servicios o dispositivos que producen datos o eventos.
+
+2. Topics: los temas actúan como canales o categorías a los que los pubs envían sus mensajes. Los pubs publican mensajes sobre temas específicos de interés.
+
+3. Suscriptores: Los suscriptores son entidades que reciben y consumen mensajes. Se suscriben a topics específicos y reciben mensajes cada vez que hay contenido nuevo disponible sobre esos temas. Los suscriptores pueden ser aplicaciones, servicios o componentes que procesan o reaccionan a los mensajes recibidos.
+
+4. Agente de mensajes: el agente de mensajes es un componente central que maneja el enrutamiento y la entrega de mensajes entre publicadores y suscriptores. Administra los temas, mantiene la lista de suscriptores y garantiza que los mensajes se entreguen correctamente a los suscriptores interesados.
+
+Comunicación asíncrona: en la arquitectura Pub/Sub, los editores y los suscriptores operan de forma asíncrona. Los editores no envían mensajes directamente a suscriptores específicos. En su lugar, publican mensajes en temas y el intermediario de mensajes se encarga de distribuir los mensajes a todos los suscriptores interesados
+
+Ejemplo :::::::::::::::
+Imagine que tiene una editorial de periódicos con varios periodistas (pubs) que escriben artículos y muchos suscriptores que desean recibir tipos específicos de noticias.
+
+#### 
+OJO no es el unico modelo tenemos:
+1. Request/Response Model: 
+2. Message Queue Model:
+3. Point-to-Point Model:
+4. Event-Driven Model:
+5. Remote Procedure Call (RPC)
+
+
+
