@@ -74,4 +74,4 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
 
 # Podemos ir a: http://localhost:80/events
-# Hacer el retrieve para verificar: Invoke-WebRequest -Uri "http://localhost:80/events" -OutFile "Clase 10/ETL_ scheduling//tmp/events.json" 
+# Hacer el retrieve para verificar: Invoke-WebRequest -Uri "http://localhost:80/events" -OutFile "Clase 10/ETL_ scheduling/tmp/events.json" 

@@ -1,0 +1,10 @@
+{
+	"stocks": ["USDT", "BUSD", "DAI", "BTC", "BNB"],
+	"thresholds": {
+		"USDT": {"min": 0.998, "max": 1.005},
+		"BUSD": {"min": 0.998, "max": 1.005},
+		"DAI": {"min": 0.998, "max": 1.005},
+		"BTC": {"min": 26000, "max": 27000},
+		"BNB": {"min": 200, "max": 300}
+	}
+}
