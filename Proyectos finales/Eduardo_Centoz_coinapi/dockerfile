@@ -1,0 +1,10 @@
+FROM python:3.8
+EXPOSE 8080
+WORKDIR /app
+COPY dag_tercera_entrega.py .
+COPY requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install apache-airflow
+RUN pip install -r requirements.txt
+CMD ["python", "dags/dag_tercera_entrega.py"]
+

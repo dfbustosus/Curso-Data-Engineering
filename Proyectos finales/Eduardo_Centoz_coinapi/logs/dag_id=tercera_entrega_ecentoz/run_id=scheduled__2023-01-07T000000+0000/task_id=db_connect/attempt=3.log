@@ -1,0 +1,116 @@
+[2023-05-26 06:05:05,661] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-07T00:00:00+00:00 [queued]>
+[2023-05-26 06:05:05,673] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-07T00:00:00+00:00 [queued]>
+[2023-05-26 06:05:05,673] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-26 06:05:05,675] {taskinstance.py:1377} INFO - Starting attempt 3 of 6
+[2023-05-26 06:05:05,676] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-26 06:05:05,704] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-01-07 00:00:00+00:00
+[2023-05-26 06:05:05,713] {standard_task_runner.py:52} INFO - Started process 781 to run task
+[2023-05-26 06:05:05,717] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'scheduled__2023-01-07T00:00:00+00:00', '--job-id', '77', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpi9gyn2tu', '--error-file', '/tmp/tmps662bmp4']
+[2023-05-26 06:05:05,720] {standard_task_runner.py:80} INFO - Job 77: Subtask db_connect
+[2023-05-26 06:05:05,829] {task_command.py:371} INFO - Running <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-07T00:00:00+00:00 [running]> on host f4aa0d8de4f3
+[2023-05-26 06:05:05,935] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=ecentoz
+AIRFLOW_CTX_DAG_ID=tercera_entrega_ecentoz
+AIRFLOW_CTX_TASK_ID=db_connect
+AIRFLOW_CTX_EXECUTION_DATE=2023-01-07T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=3
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-01-07T00:00:00+00:00
+[2023-05-26 06:05:10,380] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.DuplicateTable: Relation "precios_activos" already exists
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 59, in db_connect
+    df_final.to_sql('precios_activos',conn,index=False,if_exists='replace',schema='ecentoz_coderhouse')
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1650, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 867, in create
+    self._execute_create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 853, in _execute_create
+    self.table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/schema.py", line 950, in create
+    bind._run_ddl_visitor(ddl.SchemaGenerator, self, checkfirst=checkfirst)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3110, in _run_ddl_visitor
+    conn._run_ddl_visitor(visitorcallable, element, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2113, in _run_ddl_visitor
+    visitorcallable(self.dialect, self, **kwargs).traverse_single(element)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/visitors.py", line 524, in traverse_single
+    return meth(obj, **kw)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/ddl.py", line 895, in visit_table
+    include_foreign_key_constraints,  # noqa
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1289, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/ddl.py", line 78, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1387, in _execute_ddl
+    compiled,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.DuplicateTable) Relation "precios_activos" already exists
+
+[SQL: 
+CREATE TABLE ecentoz_coderhouse.precios_activos (
+	time_period_start TEXT, 
+	time_period_end TEXT, 
+	time_open TEXT, 
+	time_close TEXT, 
+	rate_open FLOAT(53), 
+	rate_high FLOAT(53), 
+	rate_low FLOAT(53), 
+	rate_close FLOAT(53), 
+	activo1 TEXT, 
+	activo2 TEXT, 
+	par_activos TEXT
+)
+
+]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+[2023-05-26 06:05:10,402] {taskinstance.py:1420} INFO - Marking task as UP_FOR_RETRY. dag_id=tercera_entrega_ecentoz, task_id=db_connect, execution_date=20230107T000000, start_date=20230526T060505, end_date=20230526T060510
+[2023-05-26 06:05:10,424] {standard_task_runner.py:97} ERROR - Failed to execute job 77 for task db_connect ((psycopg2.errors.DuplicateTable) Relation "precios_activos" already exists
+
+[SQL: 
+CREATE TABLE ecentoz_coderhouse.precios_activos (
+	time_period_start TEXT, 
+	time_period_end TEXT, 
+	time_open TEXT, 
+	time_close TEXT, 
+	rate_open FLOAT(53), 
+	rate_high FLOAT(53), 
+	rate_low FLOAT(53), 
+	rate_close FLOAT(53), 
+	activo1 TEXT, 
+	activo2 TEXT, 
+	par_activos TEXT
+)
+
+]
+(Background on this error at: https://sqlalche.me/e/14/f405); 781)
+[2023-05-26 06:05:10,435] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-05-26 06:05:10,469] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,80 @@
+[2023-05-26 06:05:31,385] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-11T00:00:00+00:00 [queued]>
+[2023-05-26 06:05:31,407] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-11T00:00:00+00:00 [queued]>
+[2023-05-26 06:05:31,416] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-26 06:05:31,417] {taskinstance.py:1377} INFO - Starting attempt 3 of 6
+[2023-05-26 06:05:31,418] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-26 06:05:31,475] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-01-11 00:00:00+00:00
+[2023-05-26 06:05:31,489] {standard_task_runner.py:52} INFO - Started process 821 to run task
+[2023-05-26 06:05:31,501] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'scheduled__2023-01-11T00:00:00+00:00', '--job-id', '80', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpvlyu77st', '--error-file', '/tmp/tmpicllnk68']
+[2023-05-26 06:05:31,504] {standard_task_runner.py:80} INFO - Job 80: Subtask db_connect
+[2023-05-26 06:05:31,650] {task_command.py:371} INFO - Running <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-11T00:00:00+00:00 [running]> on host f4aa0d8de4f3
+[2023-05-26 06:05:31,836] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=ecentoz
+AIRFLOW_CTX_DAG_ID=tercera_entrega_ecentoz
+AIRFLOW_CTX_TASK_ID=db_connect
+AIRFLOW_CTX_EXECUTION_DATE=2023-01-11T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=3
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-01-11T00:00:00+00:00
+[2023-05-26 06:05:40,093] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1783, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 969, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "ecentoz_coderhouse.precios_activos" does not exist
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 59, in db_connect
+    df_final.to_sql('precios_activos',conn,index=False,if_exists='replace',schema='ecentoz_coderhouse')
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1770, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1350, in insert_records
+    raise err
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1340, in insert_records
+    table.insert(chunksize=chunksize, method=method)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 967, in insert
+    exec_insert(conn, keys, chunk_iter)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 882, in _execute_insert
+    conn.execute(self.table.insert(), data)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1289, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1783, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 969, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "ecentoz_coderhouse.precios_activos" does not exist
+
+[SQL: INSERT INTO ecentoz_coderhouse.precios_activos (time_period_start, time_period_end, time_open, time_close, rate_open, rate_high, rate_low, rate_close, activo1, activo2, par_activos) VALUES (%(time_period_start)s, %(time_period_end)s, %(time_open)s, %(time_close)s, %(rate_open)s, %(rate_high)s, %(rate_low)s, %(rate_close)s, %(activo1)s, %(activo2)s, %(par_activos)s)]
+[parameters: ({'time_period_start': '2023-04-29 00:00:00', 'time_period_end': '2023-04-29 00:30:00', 'time_open': '2023-04-29 00:00:00', 'time_close': '2023-04-29 00:29:00', 'rate_open': 29333.05972495051, 'rate_high': 29369.410293293902, 'rate_low': 29324.099698629405, 'rate_close': 29333.097473865226, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 00:30:00', 'time_period_end': '2023-04-29 01:00:00', 'time_open': '2023-04-29 00:30:00', 'time_close': '2023-04-29 00:59:00', 'rate_open': 29328.83657917555, 'rate_high': 29343.666210561096, 'rate_low': 29230.268378120083, 'rate_close': 29264.606458154598, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 01:00:00', 'time_period_end': '2023-04-29 01:30:00', 'time_open': '2023-04-29 01:00:00', 'time_close': '2023-04-29 01:29:00', 'rate_open': 29274.637682012737, 'rate_high': 29300.392052067105, 'rate_low': 29241.59706208223, 'rate_close': 29300.392052067105, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 01:30:00', 'time_period_end': '2023-04-29 02:00:00', 'time_open': '2023-04-29 01:30:00', 'time_close': '2023-04-29 01:59:00', 'rate_open': 29301.303482950978, 'rate_high': 29312.044677840546, 'rate_low': 29288.021445963488, 'rate_close': 29293.553637425015, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 02:00:00', 'time_period_end': '2023-04-29 02:30:00', 'time_open': '2023-04-29 02:00:00', 'time_close': '2023-04-29 02:29:00', 'rate_open': 29294.278771415284, 'rate_high': 29360.499355029267, 'rate_low': 29292.45159960473, 'rate_close': 29350.908169661096, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 02:30:00', 'time_period_end': '2023-04-29 03:00:00', 'time_open': '2023-04-29 02:30:00', 'time_close': '2023-04-29 02:59:00', 'rate_open': 29345.46446269407, 'rate_high': 29410.368834834004, 'rate_low': 29345.46446269407, 'rate_close': 29403.55763378106, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 03:00:00', 'time_period_end': '2023-04-29 03:30:00', 'time_open': '2023-04-29 03:00:00', 'time_close': '2023-04-29 03:29:00', 'rate_open': 29402.0485418263, 'rate_high': 29402.0485418263, 'rate_low': 29364.24569158986, 'rate_close': 29392.44629883367, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 03:30:00', 'time_period_end': '2023-04-29 04:00:00', 'time_open': '2023-04-29 03:30:00', 'time_close': '2023-04-29 03:59:00', 'rate_open': 29395.02235783001, 'rate_high': 29415.384354588008, 'rate_low': 29378.15169927278, 'rate_close': 29385.82000797562, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}  ... displaying 10 of 48 total bound parameter sets ...  {'time_period_start': '2023-04-29 23:00:00', 'time_period_end': '2023-04-29 23:30:00', 'time_open': '2023-04-29 23:00:00', 'time_close': '2023-04-29 23:29:00', 'rate_open': 29222.019653150433, 'rate_high': 29223.13005319884, 'rate_low': 29169.210414423334, 'rate_close': 29210.07098553093, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 23:30:00', 'time_period_end': '2023-04-30 00:00:00', 'time_open': '2023-04-29 23:30:00', 'time_close': '2023-04-29 23:59:00', 'rate_open': 29189.032689540876, 'rate_high': 29247.32841101353, 'rate_low': 29182.97852488162, 'rate_close': 29245.551778209618, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'})]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+[2023-05-26 06:05:40,117] {taskinstance.py:1420} INFO - Marking task as UP_FOR_RETRY. dag_id=tercera_entrega_ecentoz, task_id=db_connect, execution_date=20230111T000000, start_date=20230526T060531, end_date=20230526T060540
+[2023-05-26 06:05:40,145] {standard_task_runner.py:97} ERROR - Failed to execute job 80 for task db_connect ((psycopg2.errors.UndefinedTable) relation "ecentoz_coderhouse.precios_activos" does not exist
+
+[SQL: INSERT INTO ecentoz_coderhouse.precios_activos (time_period_start, time_period_end, time_open, time_close, rate_open, rate_high, rate_low, rate_close, activo1, activo2, par_activos) VALUES (%(time_period_start)s, %(time_period_end)s, %(time_open)s, %(time_close)s, %(rate_open)s, %(rate_high)s, %(rate_low)s, %(rate_close)s, %(activo1)s, %(activo2)s, %(par_activos)s)]
+[parameters: ({'time_period_start': '2023-04-29 00:00:00', 'time_period_end': '2023-04-29 00:30:00', 'time_open': '2023-04-29 00:00:00', 'time_close': '2023-04-29 00:29:00', 'rate_open': 29333.05972495051, 'rate_high': 29369.410293293902, 'rate_low': 29324.099698629405, 'rate_close': 29333.097473865226, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 00:30:00', 'time_period_end': '2023-04-29 01:00:00', 'time_open': '2023-04-29 00:30:00', 'time_close': '2023-04-29 00:59:00', 'rate_open': 29328.83657917555, 'rate_high': 29343.666210561096, 'rate_low': 29230.268378120083, 'rate_close': 29264.606458154598, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 01:00:00', 'time_period_end': '2023-04-29 01:30:00', 'time_open': '2023-04-29 01:00:00', 'time_close': '2023-04-29 01:29:00', 'rate_open': 29274.637682012737, 'rate_high': 29300.392052067105, 'rate_low': 29241.59706208223, 'rate_close': 29300.392052067105, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 01:30:00', 'time_period_end': '2023-04-29 02:00:00', 'time_open': '2023-04-29 01:30:00', 'time_close': '2023-04-29 01:59:00', 'rate_open': 29301.303482950978, 'rate_high': 29312.044677840546, 'rate_low': 29288.021445963488, 'rate_close': 29293.553637425015, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 02:00:00', 'time_period_end': '2023-04-29 02:30:00', 'time_open': '2023-04-29 02:00:00', 'time_close': '2023-04-29 02:29:00', 'rate_open': 29294.278771415284, 'rate_high': 29360.499355029267, 'rate_low': 29292.45159960473, 'rate_close': 29350.908169661096, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 02:30:00', 'time_period_end': '2023-04-29 03:00:00', 'time_open': '2023-04-29 02:30:00', 'time_close': '2023-04-29 02:59:00', 'rate_open': 29345.46446269407, 'rate_high': 29410.368834834004, 'rate_low': 29345.46446269407, 'rate_close': 29403.55763378106, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 03:00:00', 'time_period_end': '2023-04-29 03:30:00', 'time_open': '2023-04-29 03:00:00', 'time_close': '2023-04-29 03:29:00', 'rate_open': 29402.0485418263, 'rate_high': 29402.0485418263, 'rate_low': 29364.24569158986, 'rate_close': 29392.44629883367, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 03:30:00', 'time_period_end': '2023-04-29 04:00:00', 'time_open': '2023-04-29 03:30:00', 'time_close': '2023-04-29 03:59:00', 'rate_open': 29395.02235783001, 'rate_high': 29415.384354588008, 'rate_low': 29378.15169927278, 'rate_close': 29385.82000797562, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}  ... displaying 10 of 48 total bound parameter sets ...  {'time_period_start': '2023-04-29 23:00:00', 'time_period_end': '2023-04-29 23:30:00', 'time_open': '2023-04-29 23:00:00', 'time_close': '2023-04-29 23:29:00', 'rate_open': 29222.019653150433, 'rate_high': 29223.13005319884, 'rate_low': 29169.210414423334, 'rate_close': 29210.07098553093, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'}, {'time_period_start': '2023-04-29 23:30:00', 'time_period_end': '2023-04-30 00:00:00', 'time_open': '2023-04-29 23:30:00', 'time_close': '2023-04-29 23:59:00', 'rate_open': 29189.032689540876, 'rate_high': 29247.32841101353, 'rate_low': 29182.97852488162, 'rate_close': 29245.551778209618, 'activo1': 'BTC', 'activo2': 'USD', 'par_activos': 'BTC_USD'})]
+(Background on this error at: https://sqlalche.me/e/14/f405); 821)
+[2023-05-26 06:05:40,172] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-05-26 06:05:40,200] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

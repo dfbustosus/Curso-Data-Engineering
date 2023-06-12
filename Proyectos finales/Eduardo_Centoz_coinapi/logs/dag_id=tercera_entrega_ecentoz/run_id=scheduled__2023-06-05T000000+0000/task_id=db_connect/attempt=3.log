@@ -1,0 +1,36 @@
+[2023-06-12 01:28:01,320] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-06-05T00:00:00+00:00 [queued]>
+[2023-06-12 01:28:01,364] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-06-05T00:00:00+00:00 [queued]>
+[2023-06-12 01:28:01,371] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 01:28:01,379] {taskinstance.py:1377} INFO - Starting attempt 3 of 6
+[2023-06-12 01:28:01,381] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 01:28:01,485] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-06-05 00:00:00+00:00
+[2023-06-12 01:28:01,531] {standard_task_runner.py:52} INFO - Started process 245 to run task
+[2023-06-12 01:28:01,544] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'scheduled__2023-06-05T00:00:00+00:00', '--job-id', '295', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpmp4ibd52', '--error-file', '/tmp/tmpc4fkqt2b']
+[2023-06-12 01:28:01,600] {standard_task_runner.py:80} INFO - Job 295: Subtask db_connect
+[2023-06-12 01:28:02,051] {task_command.py:371} INFO - Running <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-06-05T00:00:00+00:00 [running]> on host f4aa0d8de4f3
+[2023-06-12 01:28:02,266] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=ecentoz
+AIRFLOW_CTX_DAG_ID=tercera_entrega_ecentoz
+AIRFLOW_CTX_TASK_ID=db_connect
+AIRFLOW_CTX_EXECUTION_DATE=2023-06-05T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=3
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-06-05T00:00:00+00:00
+[2023-06-12 01:28:06,958] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 83, in db_connect
+    df = data_transform_df()
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 71, in data_transform_df
+    df_final = data_from_api()
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 56, in data_from_api
+    url = url_base + activo1 + '/' + activo2 + '/history?period_id=30MIN&time_start=' + time_start + '&time_end=' + time_end + '&limit=' + '10000'
+TypeError: can only concatenate str (not "datetime.date") to str
+[2023-06-12 01:28:07,074] {taskinstance.py:1420} INFO - Marking task as UP_FOR_RETRY. dag_id=tercera_entrega_ecentoz, task_id=db_connect, execution_date=20230605T000000, start_date=20230612T012801, end_date=20230612T012807
+[2023-06-12 01:28:07,503] {standard_task_runner.py:97} ERROR - Failed to execute job 295 for task db_connect (can only concatenate str (not "datetime.date") to str; 245)
+[2023-06-12 01:28:07,654] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-06-12 01:28:08,160] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

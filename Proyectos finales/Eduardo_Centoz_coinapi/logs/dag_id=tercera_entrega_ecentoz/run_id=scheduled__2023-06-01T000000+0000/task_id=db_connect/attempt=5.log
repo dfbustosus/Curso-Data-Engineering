@@ -1,0 +1,20 @@
+[2023-06-12 01:40:59,503] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-06-01T00:00:00+00:00 [queued]>
+[2023-06-12 01:40:59,599] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-06-01T00:00:00+00:00 [queued]>
+[2023-06-12 01:40:59,600] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 01:40:59,601] {taskinstance.py:1377} INFO - Starting attempt 5 of 6
+[2023-06-12 01:40:59,602] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 01:40:59,690] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-06-01 00:00:00+00:00
+[2023-06-12 01:40:59,773] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'scheduled__2023-06-01T00:00:00+00:00', '--job-id', '353', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpyqz6q_j0', '--error-file', '/tmp/tmp4m601fx8']
+[2023-06-12 01:40:59,810] {standard_task_runner.py:80} INFO - Job 353: Subtask db_connect
+[2023-06-12 01:40:59,781] {standard_task_runner.py:52} INFO - Started process 219 to run task
+[2023-06-12 01:40:59,981] {cli_action_loggers.py:105} WARNING - Failed to log action with (psycopg2.OperationalError) connection to server at "postgres" (172.19.0.2), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-06-12 01:41:00,024] {standard_task_runner.py:97} ERROR - Failed to execute job 353 for task db_connect ((psycopg2.OperationalError) connection to server at "postgres" (172.19.0.2), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8); 219)
+[2023-06-12 01:41:00,075] {local_task_job.py:156} INFO - Task exited with return code 1

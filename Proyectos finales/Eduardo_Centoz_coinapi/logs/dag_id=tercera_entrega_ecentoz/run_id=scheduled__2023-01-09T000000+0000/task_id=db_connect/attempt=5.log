@@ -1,0 +1,47 @@
+[2023-05-26 06:15:22,128] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-09T00:00:00+00:00 [queued]>
+[2023-05-26 06:15:22,140] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-09T00:00:00+00:00 [queued]>
+[2023-05-26 06:15:22,141] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-26 06:15:22,142] {taskinstance.py:1377} INFO - Starting attempt 5 of 6
+[2023-05-26 06:15:22,142] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-26 06:15:22,162] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-01-09 00:00:00+00:00
+[2023-05-26 06:15:22,169] {standard_task_runner.py:52} INFO - Started process 1341 to run task
+[2023-05-26 06:15:22,172] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'scheduled__2023-01-09T00:00:00+00:00', '--job-id', '145', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpeljmczxc', '--error-file', '/tmp/tmpq5hlxm2q']
+[2023-05-26 06:15:22,174] {standard_task_runner.py:80} INFO - Job 145: Subtask db_connect
+[2023-05-26 06:15:22,256] {task_command.py:371} INFO - Running <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-09T00:00:00+00:00 [running]> on host f4aa0d8de4f3
+[2023-05-26 06:15:22,350] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=ecentoz
+AIRFLOW_CTX_DAG_ID=tercera_entrega_ecentoz
+AIRFLOW_CTX_TASK_ID=db_connect
+AIRFLOW_CTX_EXECUTION_DATE=2023-01-09T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=5
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-01-09T00:00:00+00:00
+[2023-05-26 06:15:22,892] {logging_mixin.py:115} INFO - Se acabó la cuota de datos, revise el último df_final para decidir como continuar
+[2023-05-26 06:15:27,343] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 59, in db_connect
+    df_final.to_sql('precios_activos',conn,index=False,if_exists='replace',schema='ecentoz_coderhouse')
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1650, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 860, in create
+    self.pd_sql.drop_table(self.name, self.schema)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1809, in drop_table
+    self.meta.reflect(only=[table_name], schema=schema)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/schema.py", line 4746, in reflect
+    "in %r%s: (%s)" % (bind.engine, s, ", ".join(missing))
+sqlalchemy.exc.InvalidRequestError: Could not reflect: requested table(s) not available in Engine(postgresql://ecentoz_coderhouse:***@data-engineer-cluster.cyhh5bfevlmn.us-east-1.redshift.amazonaws.com:5439/data-engineer-database) schema 'ecentoz_coderhouse': (precios_activos)
+[2023-05-26 06:15:27,360] {taskinstance.py:1420} INFO - Marking task as UP_FOR_RETRY. dag_id=tercera_entrega_ecentoz, task_id=db_connect, execution_date=20230109T000000, start_date=20230526T061522, end_date=20230526T061527
+[2023-05-26 06:15:27,373] {standard_task_runner.py:97} ERROR - Failed to execute job 145 for task db_connect (Could not reflect: requested table(s) not available in Engine(postgresql://ecentoz_coderhouse:***@data-engineer-cluster.cyhh5bfevlmn.us-east-1.redshift.amazonaws.com:5439/data-engineer-database) schema 'ecentoz_coderhouse': (precios_activos); 1341)
+[2023-05-26 06:15:27,380] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-05-26 06:15:27,404] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

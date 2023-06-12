@@ -1,0 +1,23 @@
+[2023-06-12 02:15:10,681] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect manual__2023-06-12T02:15:09.693232+00:00 [queued]>
+[2023-06-12 02:15:10,692] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect manual__2023-06-12T02:15:09.693232+00:00 [queued]>
+[2023-06-12 02:15:10,693] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 02:15:10,695] {taskinstance.py:1377} INFO - Starting attempt 1 of 6
+[2023-06-12 02:15:10,696] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 02:15:10,710] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-06-12 02:15:09.693232+00:00
+[2023-06-12 02:15:10,714] {standard_task_runner.py:52} INFO - Started process 186 to run task
+[2023-06-12 02:15:10,717] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'manual__2023-06-12T02:15:09.693232+00:00', '--job-id', '389', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpq2ngef71', '--error-file', '/tmp/tmpojwbaety']
+[2023-06-12 02:15:10,718] {standard_task_runner.py:80} INFO - Job 389: Subtask db_connect
+[2023-06-12 02:15:10,779] {task_command.py:371} INFO - Running <TaskInstance: tercera_entrega_ecentoz.db_connect manual__2023-06-12T02:15:09.693232+00:00 [running]> on host 833a7834a9bc
+[2023-06-12 02:15:10,856] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=ecentoz
+AIRFLOW_CTX_DAG_ID=tercera_entrega_ecentoz
+AIRFLOW_CTX_TASK_ID=db_connect
+AIRFLOW_CTX_EXECUTION_DATE=2023-06-12T02:15:09.693232+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-06-12T02:15:09.693232+00:00
+[2023-06-12 02:15:48,546] {python.py:173} INFO - Done. Returned value was: None
+[2023-06-12 02:15:48,584] {taskinstance.py:1420} INFO - Marking task as SUCCESS. dag_id=tercera_entrega_ecentoz, task_id=db_connect, execution_date=20230612T021509, start_date=20230612T021510, end_date=20230612T021548
+[2023-06-12 02:15:48,620] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-06-12 02:15:48,643] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

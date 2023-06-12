@@ -1,0 +1,89 @@
+[2023-05-26 06:20:28,604] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-09T00:00:00+00:00 [queued]>
+[2023-05-26 06:20:28,616] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-09T00:00:00+00:00 [queued]>
+[2023-05-26 06:20:28,617] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-26 06:20:28,618] {taskinstance.py:1377} INFO - Starting attempt 6 of 6
+[2023-05-26 06:20:28,619] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-26 06:20:28,637] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-01-09 00:00:00+00:00
+[2023-05-26 06:20:28,643] {standard_task_runner.py:52} INFO - Started process 1646 to run task
+[2023-05-26 06:20:28,647] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'scheduled__2023-01-09T00:00:00+00:00', '--job-id', '189', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpw933yoqi', '--error-file', '/tmp/tmpyhyyjhae']
+[2023-05-26 06:20:28,649] {standard_task_runner.py:80} INFO - Job 189: Subtask db_connect
+[2023-05-26 06:20:28,729] {task_command.py:371} INFO - Running <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-01-09T00:00:00+00:00 [running]> on host f4aa0d8de4f3
+[2023-05-26 06:20:28,822] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=ecentoz
+AIRFLOW_CTX_DAG_ID=tercera_entrega_ecentoz
+AIRFLOW_CTX_TASK_ID=db_connect
+AIRFLOW_CTX_EXECUTION_DATE=2023-01-09T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=6
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-01-09T00:00:00+00:00
+[2023-05-26 06:20:29,342] {logging_mixin.py:115} INFO - Se acabó la cuota de datos, revise el último df_final para decidir como continuar
+[2023-05-26 06:20:37,482] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InternalError_: could not open relation with OID 347207
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 59, in db_connect
+    df_final.to_sql('precios_activos',conn,index=False,if_exists='replace',schema='ecentoz_coderhouse')
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1650, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 860, in create
+    self.pd_sql.drop_table(self.name, self.schema)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1810, in drop_table
+    self.get_table(table_name, schema).drop()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/schema.py", line 967, in drop
+    bind._run_ddl_visitor(ddl.SchemaDropper, self, checkfirst=checkfirst)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3110, in _run_ddl_visitor
+    conn._run_ddl_visitor(visitorcallable, element, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2113, in _run_ddl_visitor
+    visitorcallable(self.dialect, self, **kwargs).traverse_single(element)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/visitors.py", line 524, in traverse_single
+    return meth(obj, **kw)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/ddl.py", line 1097, in visit_table
+    self.connection.execute(DropTable(table))
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1289, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/ddl.py", line 78, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1387, in _execute_ddl
+    compiled,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 719, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.InternalError: (psycopg2.errors.InternalError_) could not open relation with OID 347207
+
+[SQL: 
+DROP TABLE ecentoz_coderhouse.precios_activos]
+(Background on this error at: https://sqlalche.me/e/14/2j85)
+[2023-05-26 06:20:37,498] {taskinstance.py:1420} INFO - Marking task as FAILED. dag_id=tercera_entrega_ecentoz, task_id=db_connect, execution_date=20230109T000000, start_date=20230526T062028, end_date=20230526T062037
+[2023-05-26 06:20:37,517] {standard_task_runner.py:97} ERROR - Failed to execute job 189 for task db_connect ((psycopg2.errors.InternalError_) could not open relation with OID 347207
+
+[SQL: 
+DROP TABLE ecentoz_coderhouse.precios_activos]
+(Background on this error at: https://sqlalche.me/e/14/2j85); 1646)
+[2023-05-26 06:20:37,556] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-05-26 06:20:37,584] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

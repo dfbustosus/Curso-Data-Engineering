@@ -1,0 +1,18 @@
+[2023-06-12 01:40:59,476] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-06-06T00:00:00+00:00 [queued]>
+[2023-06-12 01:40:59,551] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-06-06T00:00:00+00:00 [queued]>
+[2023-06-12 01:40:59,552] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 01:40:59,554] {taskinstance.py:1377} INFO - Starting attempt 5 of 6
+[2023-06-12 01:40:59,555] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 01:40:59,638] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-06-06 00:00:00+00:00
+[2023-06-12 01:40:59,662] {standard_task_runner.py:52} INFO - Started process 216 to run task
+[2023-06-12 01:40:59,675] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'scheduled__2023-06-06T00:00:00+00:00', '--job-id', '347', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpi0_lcypo', '--error-file', '/tmp/tmpbsz6i9aj']
+[2023-06-12 01:40:59,678] {standard_task_runner.py:80} INFO - Job 347: Subtask db_connect
+[2023-06-12 01:40:59,764] {cli_action_loggers.py:105} WARNING - Failed to log action with (psycopg2.OperationalError) connection to server at "postgres" (172.19.0.2), port 5432 failed: FATAL:  the database system is shutting down
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2023-06-12 01:40:59,930] {standard_task_runner.py:97} ERROR - Failed to execute job 347 for task db_connect ((psycopg2.OperationalError) connection to server at "postgres" (172.19.0.2), port 5432 failed: FATAL:  the database system is shutting down
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8); 216)
+[2023-06-12 01:40:59,997] {local_task_job.py:156} INFO - Task exited with return code 1

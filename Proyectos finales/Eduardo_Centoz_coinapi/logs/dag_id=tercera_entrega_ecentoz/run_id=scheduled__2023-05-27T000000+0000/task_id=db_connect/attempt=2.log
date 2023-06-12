@@ -1,0 +1,162 @@
+[2023-06-12 01:22:53,004] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-05-27T00:00:00+00:00 [queued]>
+[2023-06-12 01:22:53,240] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-05-27T00:00:00+00:00 [queued]>
+[2023-06-12 01:22:53,255] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 01:22:53,262] {taskinstance.py:1377} INFO - Starting attempt 2 of 6
+[2023-06-12 01:22:53,273] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2023-06-12 01:22:53,803] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): db_connect> on 2023-05-27 00:00:00+00:00
+[2023-06-12 01:22:54,468] {standard_task_runner.py:52} INFO - Started process 451 to run task
+[2023-06-12 01:22:55,217] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'tercera_entrega_ecentoz', 'db_connect', 'scheduled__2023-05-27T00:00:00+00:00', '--job-id', '268', '--raw', '--subdir', 'DAGS_FOLDER/dag_tercera_entrega.py', '--cfg-path', '/tmp/tmpklaj4ka8', '--error-file', '/tmp/tmpyeo47kvq']
+[2023-06-12 01:22:55,328] {standard_task_runner.py:80} INFO - Job 268: Subtask db_connect
+[2023-06-12 01:22:57,314] {task_command.py:371} INFO - Running <TaskInstance: tercera_entrega_ecentoz.db_connect scheduled__2023-05-27T00:00:00+00:00 [running]> on host f4aa0d8de4f3
+[2023-06-12 01:22:57,983] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=ecentoz
+AIRFLOW_CTX_DAG_ID=tercera_entrega_ecentoz
+AIRFLOW_CTX_TASK_ID=db_connect
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-27T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-05-27T00:00:00+00:00
+[2023-06-12 01:22:59,619] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 83, in db_connect
+    df = data_transform_df()
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 71, in data_transform_df
+    df_final = data_from_api()
+  File "/opt/airflow/dags/dag_tercera_entrega.py", line 56, in data_from_api
+    url = url_base + activo1 + '/' + activo2 + '/history?period_id=30MIN&time_start=' + time_start + '&time_end=' + time_end + '&limit=' + '10000'
+TypeError: can only concatenate str (not "datetime.date") to str
+[2023-06-12 01:22:59,799] {taskinstance.py:1420} INFO - Marking task as UP_FOR_RETRY. dag_id=tercera_entrega_ecentoz, task_id=db_connect, execution_date=20230527T000000, start_date=20230612T012253, end_date=20230612T012259
+[2023-06-12 01:23:00,075] {local_task_job.py:221} WARNING - State of this instance has been externally set to up_for_retry. Terminating instance.
+[2023-06-12 01:23:00,115] {process_utils.py:129} INFO - Sending Signals.SIGTERM to group 451. PIDs of all processes in the group: [451]
+[2023-06-12 01:23:00,121] {process_utils.py:80} INFO - Sending the signal Signals.SIGTERM to group 451
+[2023-06-12 01:23:00,144] {taskinstance.py:1561} ERROR - Received SIGTERM. Terminating subprocesses.
+[2023-06-12 01:23:00,151] {logging_mixin.py:115} WARNING - --- Logging error ---
+[2023-06-12 01:23:00,218] {logging_mixin.py:115} WARNING - Traceback (most recent call last):
+[2023-06-12 01:23:00,240] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/task/task_runner/standard_task_runner.py", line 88, in _start_by_fork
+    args.func(args, dag=self.dag)
+[2023-06-12 01:23:00,250] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/cli_parser.py", line 51, in command
+    return func(*args, **kwargs)
+[2023-06-12 01:23:00,251] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/utils/cli.py", line 99, in wrapper
+    return f(*args, **kwargs)
+[2023-06-12 01:23:00,252] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/commands/task_command.py", line 377, in task_run
+    _run_task_by_selected_method(args, dag, ti)
+[2023-06-12 01:23:00,252] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/commands/task_command.py", line 185, in _run_task_by_selected_method
+    _run_raw_task(args, ti)
+[2023-06-12 01:23:00,254] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/commands/task_command.py", line 262, in _run_raw_task
+    error_file=args.error_file,
+[2023-06-12 01:23:00,259] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/utils/session.py", line 71, in wrapper
+    return func(*args, session=session, **kwargs)
+[2023-06-12 01:23:00,265] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/models/taskinstance.py", line 1471, in _run_raw_task
+    self._execute_task_with_callbacks(context, test_mode)
+[2023-06-12 01:23:00,270] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/models/taskinstance.py", line 1618, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+[2023-06-12 01:23:00,272] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/models/taskinstance.py", line 1679, in _execute_task
+    result = execute_callable(context=context)
+[2023-06-12 01:23:00,282] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+[2023-06-12 01:23:00,283] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+[2023-06-12 01:23:00,284] {logging_mixin.py:115} WARNING -   File "/opt/***/dags/dag_tercera_entrega.py", line 83, in db_connect
+    df = data_transform_df()
+[2023-06-12 01:23:00,285] {logging_mixin.py:115} WARNING -   File "/opt/***/dags/dag_tercera_entrega.py", line 71, in data_transform_df
+    df_final = data_from_api()
+[2023-06-12 01:23:00,285] {logging_mixin.py:115} WARNING -   File "/opt/***/dags/dag_tercera_entrega.py", line 56, in data_from_api
+    url = url_base + activo1 + '/' + activo2 + '/history?period_id=30MIN&time_start=' + time_start + '&time_end=' + time_end + '&limit=' + '10000'
+[2023-06-12 01:23:00,289] {logging_mixin.py:115} WARNING - TypeError: can only concatenate str (not "datetime.date") to str
+[2023-06-12 01:23:00,297] {logging_mixin.py:115} WARNING - 
+During handling of the above exception, another exception occurred:
+[2023-06-12 01:23:00,304] {logging_mixin.py:115} WARNING - Traceback (most recent call last):
+[2023-06-12 01:23:00,309] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 1025, in emit
+    msg = self.format(record)
+[2023-06-12 01:23:00,315] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 869, in format
+    return fmt.format(record)
+[2023-06-12 01:23:00,316] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 611, in format
+    s = self.formatMessage(record)
+[2023-06-12 01:23:00,317] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 580, in formatMessage
+    return self._style.format(record)
+[2023-06-12 01:23:00,318] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 422, in format
+    return self._fmt % record.__dict__
+[2023-06-12 01:23:00,318] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/models/taskinstance.py", line 1563, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+[2023-06-12 01:23:00,334] {logging_mixin.py:115} WARNING - ***.exceptions.AirflowException: Task received SIGTERM signal
+[2023-06-12 01:23:00,353] {logging_mixin.py:115} WARNING - Call stack:
+[2023-06-12 01:23:00,439] {logging_mixin.py:115} WARNING -   File "/home/***/.local/bin/***", line 8, in <module>
+    sys.exit(main())
+[2023-06-12 01:23:00,444] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/__main__.py", line 38, in main
+    args.func(args)
+[2023-06-12 01:23:00,454] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/cli_parser.py", line 51, in command
+    return func(*args, **kwargs)
+[2023-06-12 01:23:00,467] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/utils/cli.py", line 99, in wrapper
+    return f(*args, **kwargs)
+[2023-06-12 01:23:00,485] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/commands/scheduler_command.py", line 75, in scheduler
+    _run_scheduler_job(args=args)
+[2023-06-12 01:23:00,498] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/commands/scheduler_command.py", line 46, in _run_scheduler_job
+    job.run()
+[2023-06-12 01:23:00,515] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/jobs/base_job.py", line 244, in run
+    self._execute()
+[2023-06-12 01:23:00,519] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/jobs/scheduler_job.py", line 742, in _execute
+    self.executor.start()
+[2023-06-12 01:23:00,557] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/executors/local_executor.py", line 358, in start
+    self.impl.start()
+[2023-06-12 01:23:00,561] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/executors/local_executor.py", line 300, in start
+    worker.start()
+[2023-06-12 01:23:00,575] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/multiprocessing/process.py", line 112, in start
+    self._popen = self._Popen(self)
+[2023-06-12 01:23:00,627] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/multiprocessing/context.py", line 223, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+[2023-06-12 01:23:00,631] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/multiprocessing/context.py", line 277, in _Popen
+    return Popen(process_obj)
+[2023-06-12 01:23:00,634] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/multiprocessing/popen_fork.py", line 20, in __init__
+    self._launch(process_obj)
+[2023-06-12 01:23:00,637] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/multiprocessing/popen_fork.py", line 74, in _launch
+    code = process_obj._bootstrap()
+[2023-06-12 01:23:00,640] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+[2023-06-12 01:23:00,642] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/executors/local_executor.py", line 67, in run
+    return super().run()
+[2023-06-12 01:23:00,644] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+[2023-06-12 01:23:00,646] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/executors/local_executor.py", line 190, in do_work
+    self.execute_work(key=key, command=command)
+[2023-06-12 01:23:00,648] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/executors/local_executor.py", line 84, in execute_work
+    state = self._execute_work_in_fork(command)
+[2023-06-12 01:23:00,656] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/executors/local_executor.py", line 124, in _execute_work_in_fork
+    args.func(args)
+[2023-06-12 01:23:00,666] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/cli_parser.py", line 51, in command
+    return func(*args, **kwargs)
+[2023-06-12 01:23:00,670] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/utils/cli.py", line 99, in wrapper
+    return f(*args, **kwargs)
+[2023-06-12 01:23:00,673] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/commands/task_command.py", line 377, in task_run
+    _run_task_by_selected_method(args, dag, ti)
+[2023-06-12 01:23:00,676] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/commands/task_command.py", line 183, in _run_task_by_selected_method
+    _run_task_by_local_task_job(args, ti)
+[2023-06-12 01:23:00,678] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/cli/commands/task_command.py", line 241, in _run_task_by_local_task_job
+    run_job.run()
+[2023-06-12 01:23:00,680] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/jobs/base_job.py", line 244, in run
+    self._execute()
+[2023-06-12 01:23:00,681] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/jobs/local_task_job.py", line 105, in _execute
+    self.task_runner.start()
+[2023-06-12 01:23:00,682] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/task/task_runner/standard_task_runner.py", line 41, in start
+    self.process = self._start_by_fork()
+[2023-06-12 01:23:00,684] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/task/task_runner/standard_task_runner.py", line 97, in _start_by_fork
+    os.getpid(),
+[2023-06-12 01:23:00,685] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 1407, in error
+    self._log(ERROR, msg, args, **kwargs)
+[2023-06-12 01:23:00,686] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 1514, in _log
+    self.handle(record)
+[2023-06-12 01:23:00,687] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 1524, in handle
+    self.callHandlers(record)
+[2023-06-12 01:23:00,696] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 1586, in callHandlers
+    hdlr.handle(record)
+[2023-06-12 01:23:00,703] {logging_mixin.py:115} WARNING -   File "/usr/local/lib/python3.7/logging/__init__.py", line 894, in handle
+    self.emit(record)
+[2023-06-12 01:23:00,706] {logging_mixin.py:115} WARNING -   File "/home/***/.local/lib/python3.7/site-packages/***/utils/log/file_task_handler.py", line 71, in emit
+    self.handler.emit(record)
+[2023-06-12 01:23:00,709] {logging_mixin.py:115} WARNING - Message: 'Failed to execute job %s for task %s (%s; %r)'
+Arguments: ('268', 'db_connect', TypeError('can only concatenate str (not "datetime.date") to str'), 451)
+[2023-06-12 01:23:00,753] {process_utils.py:75} INFO - Process psutil.Process(pid=451, status='terminated', exitcode=1, started='01:22:54') (451) terminated with exit code 1
