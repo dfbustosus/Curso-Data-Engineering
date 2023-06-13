@@ -1,5 +1,5 @@
 0. Crear una carpeta que se llame microdesafio
-cd 'Clase 10/Microdesafio/'
+cd 'Clase 10/Microdesafio_David/'
 ls 
 
 1. Ir a postgresql y crear una base de datos: FIN_MUNDO

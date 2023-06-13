@@ -13,7 +13,7 @@ with DAG(
     default_args=default_args,
     dag_id='dag_con_backfilling',
     description= 'Dag con catchup',
-    start_date=datetime(2023,5,11),
+    start_date=datetime(2022,9,1),
     schedule_interval='@daily',
     catchup=False
     ) as dag:
