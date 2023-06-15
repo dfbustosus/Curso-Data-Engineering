@@ -32,7 +32,7 @@ redshift_conn = {
 # argumentos por defecto para el DAG
 default_args = {
     'owner': 'DavidBU',
-    'start_date': datetime(2023,5,30),
+    'start_date': datetime(2023,6,12),
     'retries':5,
     'retry_delay': timedelta(minutes=5)
 }
