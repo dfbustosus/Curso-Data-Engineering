@@ -13,8 +13,8 @@ dag_path = os.getcwd()     #path original.. home en Docker
 dag = DAG(
     dag_id="05_query_fetching",
     schedule_interval=dt.timedelta(days=3),
-    start_date=dt.datetime(year=2023, month=6, day=11),
-    end_date=dt.datetime(year=2023, month=6, day=15),
+    start_date=dt.datetime(year=2023, month=6, day=22),
+    end_date=dt.datetime(year=2023, month=6, day=25),
 )
 
 
