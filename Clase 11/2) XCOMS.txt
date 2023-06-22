@@ -1,0 +1,50 @@
+XCOMS
+
+- Los XCom (abreviatura de "comunicaciones cruzadas") son un mecanismo que permite que las tareas se comuniquen entre sí, ya que, de forma predeterminada, las tareas están completamente aisladas y pueden ejecutarse en máquinas completamente diferentes. Un XCom se identifica mediante una clave (esencialmente su nombre), así como el task_id y el dag_id de donde proviene.
+
+Permite que las tareas intercambien pequeñas cantidades de datos entre ellas.
+
+- XCOMs, tienen XCOM Pull y un XCOM Push, son dos metodos simples para compartir data entre las tareas
+
+- XCOM Pull: permite que una tarea recupere datos de una tarea ejecutada previamente. 
+
+Cuando una tarea finaliza su ejecución y tiene datos para compartir, puede usar el parámetro xcom_push para enviar los datos a XCOM.
+
+Posteriormente, otra tarea puede recuperar estos datos utilizando el método xcom_pull, especificando el ID de la tarea o la instancia de la tarea.
+
+Los datos recuperados se pueden almacenar en una variable dentro de la tarea, lo que permite su posterior procesamiento.
+
+#########################  EJEMPLO
+# Task 1
+def task1_func(**kwargs):
+    data = "Hello, Airflow!"
+    kwargs['ti'].xcom_push(key='my_key', value=data)
+
+# Task 2
+def task2_func(**kwargs):
+    data = kwargs['ti'].xcom_pull(task_ids='task1', key='my_key')
+    print(data)  # Output: Hello, Airflow!
+
+t1 = PythonOperator(task_id='task1', python_callable=task1_func, provide_context=True)
+t2 = PythonOperator(task_id='task2', python_callable=task2_func, provide_context=True)
+
+############################################
+
+- XCOM Push:es una forma alternativa de compartir datos entre tareas. 
+
+Una tarea puede enviar datos directamente a XCOM mediante el método ti.xcom_push.
+Los datos están asociados con una clave específica y otras tareas pueden recuperarlos usando xcom_pull.
+
+t1 >> t2  # Set task dependencies
+
+
+
+####################################
+
+El código comprueba si la variable "mejor_performance" es igual al primer elemento de la lista "performance". Si la condición es verdadera pushea dos variables XCOM: "mejor_algo" con el valor "empleado_A" y "mejor_rendimiento" con el valor de la variable "mejor_performance".
+
+
+
+Luego en _usar_tarea:
+recupera los valores de dos variables XCOM, 'mejor_algo' y 'mejor_performance', de la tarea con el ID 'elegir_mejor_valor'. Los valores recuperados se asignan a las variables nombre y performance_tarea, respectivamente.
+

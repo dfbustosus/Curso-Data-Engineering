@@ -1,6 +1,6 @@
 1. Crear un folder Microdesafio
 #### CONFIGURACION GENERAL DEL EMAIL ##########
-2. Ir a email gmal > Gestionar Cuenta de google>  configuracion de cuenta >seguridad > Activar Less Secure apps o Activa autenticacion
+2. Ir a email gmal > Seguridad > Activar Less Secure apps o Activa autenticacion
 en 2 pasos (lo sugerido por mi)
 '''
 Documentacion
