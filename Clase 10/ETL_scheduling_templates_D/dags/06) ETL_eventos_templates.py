@@ -5,6 +5,9 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 import os
+import requests
+from datetime import timedelta
+
 # Jinja templates: https://jinja.palletsprojects.com/en/3.1.x/
 ###### FASE DAG #########################
 
@@ -14,21 +17,26 @@ dag_path = os.getcwd()     #path original.. home en Docker
 dag = DAG(
     dag_id="06_templated_query",
     schedule_interval=dt.timedelta(days=2),# dt.timedelta(days=3)
-    start_date=dt.datetime(year=2023, month=6, day=21),
-    end_date=dt.datetime(year=2023, month=6, day=26),
+    start_date=dt.datetime(year=2023, month=6, day=19),
+    end_date=dt.datetime(year=2023, month=6, day=24),
+    catchup=False
 )
 
+def fetch_events(execution_date, next_execution_date, dag_path):
+    start_date = execution_date.strftime('%Y-%m-%d')
+    end_date = (next_execution_date + timedelta(days=1)).strftime('%Y-%m-%d')
+    url = f"http://events_api:80/events?start_date={start_date}&end_date={end_date}"
+    response = requests.get(url)
+    with open(f"{dag_path}/data/events.json", "w") as f:
+        f.write(response.text)
 
-fetch_events = BashOperator(
+fetch_events_operator = PythonOperator(
     task_id="fetch_events",
-    bash_command=(
-        "curl -o /opt/***/data/events.json "
-        "http://events_api:80/events?"
-        "start_date={{execution_date.strftime('%Y-%m-%d')}}&"
-        "end_date={{next_execution_date.strftime('%Y-%m-%d')}}"
-    ),
-        dag=dag,
-    )
+    provide_context=True,
+    python_callable=fetch_events,
+    op_kwargs={'dag_path': dag_path},
+    dag=dag
+)
 
 def _calculate_stats(input_path, output_path):
     """Calcular estadisticos."""
@@ -47,4 +55,4 @@ calculate_stats = PythonOperator(
         dag=dag,
     )
 
-fetch_events >> calculate_stats
+fetch_events_operator >> calculate_stats
