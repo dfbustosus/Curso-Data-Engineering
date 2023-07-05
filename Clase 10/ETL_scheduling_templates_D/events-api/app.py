@@ -45,7 +45,7 @@ def _generate_events_for_day(date):
 
 
 app = Flask(__name__)
-app.config["events"] = _generate_events(end_date=date(year=2023, month=6, day=30))
+app.config["events"] = _generate_events(end_date=date(year=2023, month=7, day=10))
 #app.config["events"] = _generate_events(end_date=date.today()- timedelta(days=1))
 
 

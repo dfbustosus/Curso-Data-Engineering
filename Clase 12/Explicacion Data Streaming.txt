@@ -1,3 +1,58 @@
+######## BATCH
+Pensemos Car retal
+
+Sales
+Car interventory
+Customer expectations
+Todo esto fluye por Data pipelines
+
+Podemos tener muchas fuentes de datos
+Punto de venta
+CRM
+Website
+Cada uno con DB
+
+Cada cierto tiempo aplicamos Batch processing
+Data warehouse >> BI tools
+
+En Batch lo importante son los mensajes (JSON eg)
+########### STREAMING
+ahora piensa en el siguiente problema
+Monitorear posicion de un vehiculo (Uber etc)
+Trackear que hace un usuario en spotify
+
+No podemos usar Batch processing
+Eventos son lo importante aqui
+Def Algo que pasa con cierta importancia
+
+Ej:
+user_id: 1
+timestamp: "2:21:20"
+"type": LEAVE
+
+user_id: 1
+timestamp: "2:21:17"
+"type": SCROLL
+
+user_id: 1
+timestamp: "2:21:15"
+"type": LANDING
+
+EVENT-DRIVEN Arquitectures
+
+Stream processor es importante (Apache Kafka)
+Amazon Kinesis
+Google Cloud Puub Sub
+
+Podemos separar los topicos en queues por medio de Pub/Sub
+
+Otra cosa importante es la escalabilidad
+Podemos partir los topicos en Particiones
+(e.g Coordenadas, velocidad, engine)
+
+Necesitas Microservicios tambien
+
+####################################
 El procesamiento de flujo fácil se refiere al procesamiento eficiente y simplificado de flujos de datos continuos en tiempo real o casi en tiempo real. El procesamiento de flujo permite el análisis, la transformación y el cálculo de los datos a medida que fluyen, lo que proporciona información inmediata y permite la toma de decisiones en tiempo real.
 
 Varias herramientas se utilizan comúnmente para facilitar el procesamiento de secuencias. Aquí hay algunos populares:

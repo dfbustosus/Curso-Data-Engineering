@@ -60,7 +60,9 @@ x-airflow-common:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
-    - ./data:/opt/airflow/data
+    #- ./data:/opt/airflow/data
+    - ./data/events:/opt/airflow/data/events
+    - ./data/stats:/opt/airflow/data/stats
     #- ./processed_data:/opt/airflow/processed_data
     #- ./keys:/opt/airflow/keys
   #env_file: .env
