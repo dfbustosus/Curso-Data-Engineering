@@ -13,8 +13,8 @@ dag = DAG(
     dag_id="08_templated_path",
     schedule_interval="@daily",
     start_date=dt.datetime(year=2023, month=7, day=1),
-    end_date=dt.datetime(year=2023, month=7, day=7),
-    #catchup=False
+    end_date=dt.datetime(year=2023, month=7, day=10),
+    catchup=True
 )
 
 def fetch_events(ds, **kwargs):
