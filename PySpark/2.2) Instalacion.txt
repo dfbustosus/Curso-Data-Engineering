@@ -1,0 +1,52 @@
+Como instalar:https://spark.apache.org/docs/latest/api/python/getting_started/install.html
+1. Descargar JDK, para esto ir a esta pagina
+https://www.oracle.com/java/technologies/downloads/
+2. Elegir tu distribucion y descargar el archivo correspondiente, para el caso de Windows 11 la version mas reciente es:
+x64 Installer: https://download.oracle.com/java/20/latest/jdk-20_windows-x64_bin.exe
+3. Abrir el instalador
+3.1 Aparecera una venta nueva
+3.2 Recomiendo cambiar la ruta de Java en C:/ para mayor comodidad
+3.3 Close
+4. Descargar python si no lo tienes:
+https://www.python.org/downloads/
+Recomiendo que descargues la version 3.9 o la 3.10
+5. Abrir el instalador 
+5.1 ADD Python.exe to the PATH es recomendable 
+5.2 Install Now
+5.3 Close
+6. Descargar Apache Spark
+https://spark.apache.org/downloads.html
+6.1 Click en: spark-3.4.1-bin-hadoop3.tgz
+6.2 Crear un nuevo folder en C: que se llame spark
+6.3 Pegar el archivo descargado aquí
+6.4 Descomprimir todos los archivos en esta ruta
+
+7. Ir al siguiente link para descargar winutils de hadoop:
+8. Ir a C:/ y crear un folder que se llame haddop y pegar el archivo winutils ahi 
+9. Ahora verificamos que tengamos todos los requerimientos , abrimos powershell 
+10. Ahora escribimos 
+java -version 
+python --version 
+11. Ahora podemos editar las variables de entorno
+En mi caso Java esta en: C:\Program Files\Java a esto lo podemos llamar JAVA_HOME
+En el caso de Hadoop esta en: C:\hadoop a esto lo podemos llamar HADOOP_HOME
+Ahora para Spark esta en: C:\spark a esto lo llamamos SPARK_HOME
+Ahora lo mismo para Python que esta en mi caso en: C:\Program Files\Python39\python.exe a esto lo llamamos PYSPARK_HOME
+12. Ahora vamos a las variables del sistema, elegimos path y agregamos:
+%JAVA_HOME%\bin
+%HADOOP_HOME%\bin
+%SPARK_HOME%\bin
+
+13. :quit (para salir)
+14. pyspark 
+15.  print(spark.version)
+16. Puedes ir a la UI: http://DESKTOP-G61012J:4040
+
+
+
+
+
+
+Descargar python
+
+Descargar Spark
