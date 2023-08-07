@@ -21,7 +21,7 @@ https://spark.apache.org/downloads.html
 6.3 Pegar el archivo descargado aquí
 6.4 Descomprimir todos los archivos en esta ruta
 
-7. Ir al siguiente link para descargar winutils de hadoop:
+7. Ir al siguiente link para descargar winutils de hadoop: https://github.com/kontext-tech/winutils/blob/master/hadoop-3.3.1/bin/winutils.exe
 8. Ir a C:/ y crear un folder que se llame haddop y pegar el archivo winutils ahi 
 9. Ahora verificamos que tengamos todos los requerimientos , abrimos powershell 
 10. Ahora escribimos 
@@ -41,12 +41,4 @@ Ahora lo mismo para Python que esta en mi caso en: C:\Program Files\Python39\pyt
 14. pyspark 
 15.  print(spark.version)
 16. Puedes ir a la UI: http://DESKTOP-G61012J:4040
-
-
-
-
-
-
-Descargar python
-
-Descargar Spark
+17. Perfecto tenemos todo listo y funcionando
