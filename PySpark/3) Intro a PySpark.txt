@@ -1,0 +1,84 @@
+### Intro a PySpark
+
+pip3 install pyspark
+pip3 install pyspark[sql,ml,mllib]
+
+Recuerda que el cluster se puede correr en distintos modos:
+standalone, YARN, Kubernetes y Mesos
+
+# Aparecera un mensajito de bienvenida
+spark-shell
+:help 
+
+# Correr un cluster local con el numero de threads disponibles
+pyspark --master local[*]
+pyspark --master yarn --deploy-mode client  (No usar ahora)
+
+# Configuraciones con parametros adicionales
+https://spark.apache.org/docs/latest/running-on-yarn.html
+e.g --driver-memory 2g
+
+spark (muestra la sesion activa)
+Nombre mas una direccion hexadecimal del objeto en memoria memory
+
+lista= dir(spark)
+for item in lista: print(' ' * 4 + item) 
+
+exit()
+
+# Nuestro primer ejemplo
+
+cd PySpark
+ls 
+mkdir prueba
+cd prueba
+Invoke-WebRequest -Uri "https://bit.ly/1Aoywaq" -OutFile "donation.zip"
+# Caso linux:  curl -L -o donation.zip https://bit.ly/1Aoywaq
+ls
+Expand-Archive -Path "donation.zip" -DestinationPath "."
+# Caso linux:  unzip donation.zip
+$zipFiles = Get-ChildItem -Path "." -Filter "block_*.zip"
+foreach ($zipFile in $zipFiles){$zipFile.FullName}
+
+foreach ($zipFile in $zipFiles) { $destination = Join-Path -Path "." -ChildPath $zipFile.BaseName; Expand-Archive -Path $zipFile.FullName -DestinationPath $destination -Force }
+# Caso linux: unzip 'block_*.zip'
+
+cd block_1
+ls
+pyspark
+prev = spark.read.csv("block_1.csv")
+prev
+prev.show(2)
+# Vemos que hay nulos como hariamos para leerlo mas sencillo?
+# Tenemos una opcion con
+parse= spark.read.option("header", "true").option("nullValue","?").\
+option("inferSchema","true").csv("block_1.csv")
+parse
+parse.show(2)
+# Documentacion: https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/dataframe.html
+
+# tipos de columnas
+parse.printSchema()
+
+# Que pasa si tengo un esquema que quiero usar previamente y quiero optimizar mi recurso, bueno puedo hacerlo
+from pyspark.sql.types import *
+schema_david= StructType([StructField("id_1", IntegerType(), False),\
+StructField("id_2",StringType(),False),\
+StructField("cmp_fname_c1",DoubleType(),False)])
+df_david=spark.read.schema(schema_david).csv("block_1.csv")
+df_david
+df_david.head(2)
+df_david.show(2)
+
+# Otra forma de hacerlo es
+schema_d = "id_1 INT, id_2 INT, cmp_fname_c1 DOUBLE"
+df_david2=spark.read.schema(schema_d).csv("block_1.csv")
+df_david2.show()
+df_david2.head(2)
+
+
+
+
+
+
+
