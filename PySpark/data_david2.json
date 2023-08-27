@@ -1,0 +1,37 @@
+{
+    "personas": [
+      {
+        "id": 1,
+        "nombre": "David",
+        "apellido": "DBU",
+        "genero": "M",
+        "subids": [
+          {
+            "subid": 101,
+            "info": "Subinfo 101"
+          },
+          {
+            "subid": 102,
+            "info": "Subinfo 102"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "Anna",
+        "apellido": "Smith",
+        "genero": "F",
+        "subids": [
+          {
+            "subid": 201,
+            "info": "Subinfo 201"
+          },
+          {
+            "subid": 202,
+            "info": "Subinfo 202"
+          }
+        ]
+      }
+    ]
+  }
+  
