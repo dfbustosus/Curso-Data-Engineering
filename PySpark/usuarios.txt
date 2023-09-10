@@ -1,0 +1,10 @@
+1,David,23,130
+2,Juan,21,120
+3,Pedro,25,110
+4,Lucas,24,170
+5,Andrea,25,180
+6,Sofia,28,190
+7,Andrea,27,170
+8,Carlos,21,110
+9,Andrew,26,130
+10,Vetia,27,190

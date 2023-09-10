@@ -1,0 +1,9 @@
+cd PySpark
+cd prueba
+ls
+pyspark
+
+parse= spark.read.option("header", "true").option("nullValue","?").\
+option("inferSchema","true").csv("block_1.csv")
+parse
+parse.show(2)
