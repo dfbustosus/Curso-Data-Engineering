@@ -75,7 +75,7 @@ Tutorial Mongo db
 41. db.products.findOne({"tags":"computers"},{"name":1, "description":1, "_id":0})
 42. db.products.find({"tags":"computers"}).sort({name:1})
 43. db.products.find().limit(2)
-44. db.products.count()
+44. db.products.countDocuments()
 45. db.products.find().forEach(product => print("Product Name:" +product.name))
 46. db.products.find().forEach(product => print("Product Name:" +product.price))
 47. db.products.updateOne({"name": "keyboard"}, {"$set": {"price": 9.99}})
