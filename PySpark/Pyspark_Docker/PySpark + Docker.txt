@@ -1,0 +1,65 @@
+1. docker run -it -p 8888:8888 jupyter/pyspark-notebook
+2. Ver el token de acceso
+3. Subimos el archivo
+3.1 Datos: https://data.vermont.gov/Finance/Vermont-Vendor-Payments/786x-sbp3
+4. Abrimos un nuevo notebook
+
+%pwd
+import pandas as pd 
+import numpy
+import matplotlib.pyplot as plt 
+from pyspark.sql import SparkSession
+# create sparksession
+spark = SparkSession \
+    .builder \
+    .appName("PysparkApp") \
+    .config("spark.some.config.option", "some-value") \
+    .getOrCreate()
+
+%ls
+
+%%timeit 
+df= spark.read.csv('Vermont_Vendor_Payments.csv',sep=',')
+
+%%timeit
+df2= pd.read_csv('Vermont_Vendor_Payments.csv',sep=',')
+
+# Opcion optima
+df = spark.read.csv('Vermont_Vendor_Payments.csv', header='true', inferSchema = True)
+# Operaciones basicas
+df = df.withColumn("Amount", df["Amount"].cast("double"))
+
+columns = df.columns
+columns
+
+print('filas:', df.count(), '\nColumnas:', len(df.columns))
+
+df.show(5)
+
+df.head()
+
+df.describe().show()
+
+# Vistas temporales
+
+df.createOrReplaceTempView('VermontVendor')
+spark.sql(
+'''
+SELECT `Quarter Ending`, Department, Amount, State FROM VermontVendor
+LIMIT 10
+'''
+).show()
+
+
+df.select('Quarter Ending', 'Department', 'Amount', 'State').show(10)
+
+spark.sql(
+'''
+SELECT `Quarter Ending`, Department, Amount, State FROM VermontVendor 
+WHERE Department = 'Education'
+LIMIT 10
+'''
+).show()
+
+
+df.select('Quarter Ending', 'Department', 'Amount', 'State').filter(df['Department'] == 'Education').show(10)
