@@ -7,3 +7,9 @@ CREATE TABLE zips (
     zip   VARCHAR(5) PRIMARY KEY, 
     city  VARCHAR(255)
 );
+
+-- Borrado final
+drop table contact_persons;
+drop table customers;
+drop table project_feedbacks;
+drop table zips;
