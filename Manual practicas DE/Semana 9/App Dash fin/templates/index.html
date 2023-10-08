@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Explorador de apocalipsis</title>
+    <!-- Include Plotly library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Explorador de apocalipsis</h1>
+    
+    <!-- Seleccion de escenario -->
+    <label for="scenario-dropdown">Selecciona el escenario:</label>
+    <select id="scenario-dropdown">
+        <option value="climate">Catastrofe climatica</option>
+        <option value="zombie">Apocalipsis Zombie</option>
+    </select>
+    
+    <!-- Grafica interactiva -->
+    <div id="scenario-visualization"></div>
+    
+    <!-- Compartir con comunidad -->
+    <div>
+        <h2>Compartir con la comunidad</h2>
+        <textarea id="community-textarea" placeholder="Comparte tus experiencias y pensamientos..." style="width:100%; height:100px;"></textarea>
+        <button id="community-button">Submit</button>
+        <p id="community-feedback"></p>
+    </div>
+    
+    <!-- Recursos educativos -->
+    <div>
+        <h2>Recursos Educativos</h2>
+        <p>Aprende como sobrevivir a distintos escenarios:</p>
+        <ul>
+            <li><a href="https://www.clarin.com/viste/gobierno-ee-uu-guia-oficial-sobrevivir-apocalipsis-zombie_0_BMSgVEP6m.html">Guia para sobrevivir</a></li>
+            <li><a href="https://www.buscalibre.com.ar/libro-sobrevivir-el-apocalipsis-zombie-guia-de-bolsillo-del-zombie-response-team-latino/9781500412227/p/53448519">Lista de factores importantes</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // JavaScript code for dynamic visualization
+        const climate_years = [2020, 2030, 2040, 2050, 2060];
+        const climate_temperature = [1.0, 1.5, 2.3, 3.1, 4.0];
+        const climate_sea_level = [0, 10, 25, 50, 80];
+
+        const zombie_years = [2020, 2022, 2025, 2030, 2035];
+        const zombie_population = [7_800_000_000, 7_500_000_000, 6_500_000_000, 1_000_000_000, 0];
+
+        function updateVisualization(selectedScenario) {
+            const fig = {
+                data: [],
+                layout: {}
+            };
+
+            if (selectedScenario === 'climate') {
+                fig.data.push({ x: climate_years, y: climate_temperature, mode: 'lines+markers', name: 'Temperatura (°C)' });
+                fig.data.push({ x: climate_years, y: climate_sea_level, mode: 'lines+markers', name: 'Nivel del mar (cm)' });
+                fig.layout.title = 'Escenario de catastrofe climatica';
+                fig.layout.xaxis = { title: 'Año' };
+                fig.layout.yaxis = { title: 'Valor' };
+            } else if (selectedScenario === 'zombie') {
+                fig.data.push({ x: zombie_years, y: zombie_population, mode: 'lines+markers', name: 'Zombie Population' });
+                fig.layout.title = 'Escenario Apocalisis Zombie';
+                fig.layout.xaxis = { title: 'Año' };
+                fig.layout.yaxis = { title: 'Poblacion' };
+            }
+
+            Plotly.newPlot('scenario-visualization', fig.data, fig.layout);
+        }
+
+        // Event listener for scenario dropdown change
+        const scenarioDropdown = document.getElementById('scenario-dropdown');
+        scenarioDropdown.addEventListener('change', function() {
+            const selectedScenario = scenarioDropdown.value;
+            updateVisualization(selectedScenario);
+        });
+
+        // Event listener for community button click
+        const communityButton = document.getElementById('community-button');
+        communityButton.addEventListener('click', function() {
+            const communityTextarea = document.getElementById('community-textarea');
+            const communityFeedback = document.getElementById('community-feedback');
+            const contribution = communityTextarea.value.trim();
+            if (contribution !== '') {
+                communityFeedback.textContent = 'Your contribution has been shared with the community!';
+                communityTextarea.value = '';
+            }
+        });
+
+        // Initial visualization update
+        updateVisualization('climate');
+    </script>
+</body>
+</html>

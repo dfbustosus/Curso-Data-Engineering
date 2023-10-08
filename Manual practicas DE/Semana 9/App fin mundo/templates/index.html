@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doomsday Countdown</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Bienvenido al fin del mundo</h1>
+    <p>Tiempo restante para el fin del mundo:</p>
+    <p id="countdown">{{ remaining_time }}</p>
+    <hr>
+    <h2>Comparte tus pensamientos acerca de que se acaba el mundo:</h2>
+    <form id="comment-form">
+        <textarea name="comment" rows="4" cols="50" required></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+    <h3>Commentarios:</h3>
+    <ul id="comment-list">
+        {% for comment in comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        // Funcion para actualizar el timer del contador
+        function updateCountdown() {
+            $.ajax({
+                url: '/',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#countdown').text(data.remaining_time);
+                }
+            });
+        }
+
+        // Function para lidiar con el form
+        function submitComment(event) {
+            event.preventDefault();
+            const comment = $('textarea[name="comment"]').val();
+
+            $.ajax({
+                url: '/comment',
+                method: 'POST',
+                data: {comment: comment},
+                dataType: 'json',
+                success: function (data) {
+                    if (data.message) {
+                        $('#comment-list').append(`<li>${comment}</li>`);
+                        $('textarea[name="comment"]').val('');
+                    } else if (data.error) {
+                        console.error(data.error);
+                    }
+                }
+            });
+        }
+
+        // Periodicamente actualizar el timer cada segundo (miliseconds)
+        setInterval(updateCountdown, 1000);
+
+        // Pegar el form submission y asociarlo a la funcion respectiva
+        $('#comment-form').on('submit', submitComment);
+    </script>
+</body>
+</html>

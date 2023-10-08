@@ -1,0 +1,3 @@
+Flask 
+plotly 
+Jinja2
