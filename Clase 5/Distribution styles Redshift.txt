@@ -1,7 +1,8 @@
 En Redshift, hay tres opciones diferentes de DISTSTYLE que puede usar para controlar cómo se distribuyen los 
 datos entre los nodos de computación en un clúster:
 
-1. DISTSTYLE EVEN: con esta opción, los datos se distribuyen uniformemente en todos los nodos de cómputo del clúster. Esta puede ser una buena opción para tablas con una gran cantidad de filas o tablas donde no hay una clave de distribución obvia.
+1. DISTSTYLE EVEN: con esta opción, los datos se distribuyen uniformemente en todos los nodos de cómputo del clúster. 
+Esta puede ser una buena opción para tablas con una gran cantidad de filas o tablas donde no hay una clave de distribución obvia.
 
 2. DISTSTYLE KEY: con esta opción, los datos se distribuyen en función de los valores de una columna específica
  (la distkey). Cada valor único en la distkey se asigna a un nodo de cálculo específico, por lo que las filas

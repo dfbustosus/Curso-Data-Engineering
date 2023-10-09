@@ -77,10 +77,10 @@ La opción DISTSTYLE EVEN distribuye los datos uniformemente entre todos los nod
 
 El parámetro DISTKEY especifica la columna de clave de distribución para tablas con un estilo de 
 distribución DISTSTYLE KEY. Esto determina cómo se dividen los datos entre los nodos.
-SE USA MUCHO EN JOINS
+>>> SE USA MUCHO EN JOINS
 
 El parámetro SORTKEY especifica las columnas de clave de clasificación de la tabla, 
 lo que puede mejorar el rendimiento de las consultas al optimizar el orden de los
 datos en el disco.
 
-SE USA MUCHO EN WHERE
+>>> SE USA MUCHO EN WHERE

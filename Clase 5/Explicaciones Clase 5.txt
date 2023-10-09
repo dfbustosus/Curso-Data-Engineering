@@ -1,14 +1,20 @@
 ########################################
 # Bases de datos columnares 
 
-Una tabla pivoteada es una característica popular en las bases de datos OLAP que permite a los usuarios resumir y analizar grandes cantidades de datos de forma rápida y sencilla.
+Una tabla pivoteada es una característica popular en las bases de datos OLAP que permite a los usuarios resumir y analizar grandes cantidades de datos 
+de forma rápida y sencilla.
 
-En una tabla dinámica, los datos se organizan en filas y columnas, y los usuarios pueden agrupar, filtrar y agregar los datos para crear vistas personalizadas de la información. Las tablas dinámicas brindan a los usuarios una herramienta flexible y poderosa para analizar y comprender datos complejos.
+En una tabla dinámica, los datos se organizan en filas y columnas, y los usuarios pueden agrupar, filtrar y agregar los datos para crear vistas 
+personalizadas de la información. Las tablas dinámicas brindan a los usuarios una herramienta flexible y poderosa para analizar y comprender datos complejos.
 
-RLE significa Run-Length Encoding, que es una técnica de compresión utilizada en las bases de datos OLAP para reducir la cantidad de espacio de almacenamiento necesario para almacenar grandes conjuntos de datos.
+RLE significa Run-Length Encoding, que es una técnica de compresión utilizada en las bases de datos OLAP para reducir la cantidad de espacio de almacenamiento
+necesario para almacenar grandes conjuntos de datos.
 
-En RLE, en lugar de almacenar cada valor individual en un conjunto de datos, una serie de valores idénticos consecutivos se almacenan como un valor único y su recuento correspondiente. 
-Por ejemplo, si un conjunto de datos contiene los valores "AAAAABBBBCCCC", RLE lo almacenaría como "5A4B4C". Esto puede reducir significativamente el espacio de almacenamiento necesario para almacenar el conjunto de datos.
+En RLE, en lugar de almacenar cada valor individual en un conjunto de datos, una serie de valores idénticos consecutivos se almacenan como un valor único y su 
+recuento correspondiente. 
+
+Por ejemplo, si un conjunto de datos contiene los valores "AAAAABBBBCCCC", RLE lo almacenaría como "5A4B4C". Esto puede reducir significativamente el 
+espacio de almacenamiento necesario para almacenar el conjunto de datos.
 
 RLE es particularmente útil en bases de datos OLAP porque a menudo contienen grandes cantidades de 
 valores repetidos, como en datos de series de tiempo o datos geográficos. 
@@ -21,7 +27,8 @@ Al usar RLE, las bases de datos OLAP pueden almacenar más datos en menos espaci
 MPP: MPP significa Massively Parallel Processing, que es una técnica utilizada en la agrupación 
 para mejorar el rendimiento y la escalabilidad del procesamiento de datos.
 
-En MPP, un gran conjunto de datos se divide en subconjuntos más pequeños, que luego son procesados simultáneamente por múltiples nodos de procesamiento en un clúster. Cada nodo opera de forma independiente en su subconjunto de datos, y los resultados se combinan y se devuelven al usuario.
+En MPP, un gran conjunto de datos se divide en subconjuntos más pequeños, que luego son procesados simultáneamente por múltiples nodos de procesamiento 
+en un clúster. Cada nodo opera de forma independiente en su subconjunto de datos, y los resultados se combinan y se devuelven al usuario.
 
 Clustering: grupo de computadoras interconectadas en paralelo usualmente
 

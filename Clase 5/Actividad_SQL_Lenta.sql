@@ -25,6 +25,9 @@ CREATE TABLE calls(
 
 -- Llenar con los csv >> Click derecho > Import data elegir los csv
 
+-- Se debe crear una cnsulta que para cada agente le asigne el cliente mas rapido al que le vendio?
+-- Como lo harias?
+
 -- Consulta ineficiente
 SELECT * FROM
 (SELECT ca.agentid, ca.duration, max(customerid) AS customerid
