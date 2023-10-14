@@ -75,7 +75,8 @@ Contraints:reglas que aseguran la integridad y consistencia de los datos. Redshi
 
 1. EVEN: los datos se distribuyen uniformemente entre todos los nodos del clúster, lo que puede ser adecuado para tablas que no tienen una clave de combinación natural o que tienen un volumen bajo de datos.
 
-2. KEY: los datos se distribuyen en función de los valores de una columna elegida (la clave de distribución), lo que puede mejorar el rendimiento de la unión para las tablas que se unen con frecuencia en esa columna.
+2. KEY: los datos se distribuyen en función de los valores de una columna elegida (la clave de distribución), 
+lo que puede mejorar el rendimiento de la unión para las tablas que se unen con frecuencia en esa columna.
 
 3. ALL: se almacena una copia de la tabla completa en cada nodo del clúster, lo que puede ser útil para las tablas de búsqueda pequeñas que se unen con frecuencia a tablas más grandes.
 

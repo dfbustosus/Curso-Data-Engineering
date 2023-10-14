@@ -1,0 +1,41 @@
+# docker-compose.yml
+version: '3'
+
+services:
+
+  pyspark:
+    image: jupyter/pyspark-notebook:2023-04-24
+    # limit the memory and cpu usage
+    # mem_limit: 512m
+    # mem_reservation: 128M
+    # cpus: 0.5
+    container_name: sem6-pyspark
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./docker_shared_folder/working_dir:/home/coder/working_dir
+      # - ./docker_shared_folder/secrets:/etc/secrets
+    user: root
+    working_dir: /home/coder/working_dir
+    environment:
+      JUPYTER_ENABLE_LAB: '1' 
+      JUPYTER_TOKEN: 'coder'
+      NB_USER: coder
+      NB_GID: 1000
+      CHOWN_HOME: 'yes'
+      CHOWN_HOME_OPTS: '-R'
+      SPARK_CLASSPATH: '/home/coder/working_dir/driver_jdbc/postgresql-42.2.27.jre7.jar'
+    env_file:
+      - ./docker_shared_folder/working_dir/.env
+    networks:
+      sem_4_net:
+        ipv4_address: 172.6.6.1
+
+networks:
+  sem_4_net: # Name of the network
+    ipam: # IP Address Management
+      driver: default
+      config:
+        - subnet: 172.6.6.0/16 # Subnet
+        # 172.6.6.0 is the default subnet for docker
+        # 16 is the number of bits used for the network
