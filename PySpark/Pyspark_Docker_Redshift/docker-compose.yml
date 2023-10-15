@@ -19,8 +19,8 @@ services:
     working_dir: /home/coder/working_dir
     environment:
       JUPYTER_ENABLE_LAB: '1' 
-      JUPYTER_TOKEN: 'coder'
-      NB_USER: coder
+      JUPYTER_TOKEN: 'david'
+      NB_USER: david
       NB_GID: 1000
       CHOWN_HOME: 'yes'
       CHOWN_HOME_OPTS: '-R'
