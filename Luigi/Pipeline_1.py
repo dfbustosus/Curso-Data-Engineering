@@ -4,7 +4,7 @@ from luigi import Task
 class HolaMundo(Task):
     """
     Recordar que esto es lo que se necesita pero requires piede ser vacio si es la primera tarea
-    1. requires
+    1. required
     2. output
     3. run
     """
