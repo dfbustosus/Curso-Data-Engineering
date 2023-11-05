@@ -1,0 +1,16 @@
+Pais ;Comisionado;Reduccion_CO2;Incrmento_P;Inversion_arboles;Fecha;Telefono
+Argentina;Carlos Veroes;Si;Si;Si;08/07/2022;23467698
+Colombia;Sofia Andrade;No;No;Si;12/06/2022;76587899
+Chile;Cristina Valdivia;Si;Si;Si;15/07/2022;76593749
+Bolivia;Pedro Carlos;No;No;No;01/09/2022;65746474
+Paraguay;Juan Paraguas;No;Si;Si;04/06/2022;83447474
+Venezuela;Andres Calamaro;Si;Si;No;03/05/2022;76847383
+Uruguay;Fernando Tatial;No;No;Si;04/04/2022;13434453
+Brasil;Gabriel Toeras;Si;Si;No;12/06/2022;37374344
+Ecuador;Juan Vera;No;No;No;14/05/2022;47477654
+Peru;Andres Porto;No;No;No;13/05/2022;57737373
+EEUU;Jennifer Laurence;Si;Si;Si;01/04/2022;84574737
+Canada;John white;No;Si;Si;04/01/2022;83873734
+Mexico ;Andres Fernandez;Si;Si;No;08/05/2022;64634746
+Costa Rica;Pedro Urrutia;No;No;Si;09/06/2022;14544643
+Jamaica ;Michael Sophit;No;No;No;26/07/2022;75638664
