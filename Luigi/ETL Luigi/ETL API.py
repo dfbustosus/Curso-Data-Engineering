@@ -22,7 +22,7 @@ class APICallTask(luigi.Task):
     def output(self):
         return luigi.LocalTarget("api_result.csv")  # Salida
 
-# Transform and Load
+# Transform y Load
 class DatabaseLoadTask(luigi.Task):
     # Invocar requerimiento tarea anterior
     def requires(self):
