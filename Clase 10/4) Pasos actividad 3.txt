@@ -29,7 +29,7 @@ catchup no se correrán tareas en el pasado pero podemos modificar esto con los 
 6. Conectarse al contenedor con: docker exec -it <id_contenedor> bash
 7. ls 
 8. cd dags 
-9. Escribir el siguiente comando: airflow dags backfill -s 2023-06-12 -e 2023-06-13 dag_con_backfilling
+9. Escribir el siguiente comando: airflow dags backfill -s 2023-06-12 -e 2023-06-13 dag_con_backfilling >> (airflow dags backfill -s 2023-12-01 -e 2023-12-02 dag_con_backfilling)
 10. Luego de esto deberas observar un proceso que termina con el siguiente mensaje: INFO - Backfill done. Exiting.
 11. exit 
 12. exit 
